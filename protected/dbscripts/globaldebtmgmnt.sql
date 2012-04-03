@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2012 at 09:09 PM
+-- Generation Time: Apr 03, 2012 at 06:04 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -21,11 +21,27 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-DROP DATABASE IF EXISTS globaldebtmgmnt;
-CREATE DATABASE globaldebtmgmnt;
-USE globaldebtmgmnt;
 
+--
+-- Table structure for table `sessiondb`
+--
 
+CREATE TABLE IF NOT EXISTS `sessiondb` (
+  `id` char(32) NOT NULL,
+  `expire` int(11) DEFAULT NULL,
+  `data` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sessiondb`
+--
+
+INSERT INTO `sessiondb` (`id`, `expire`, `data`) VALUES
+('1jaftsekvcq34fn1kb1ftaii56', 1333468467, '899ca626168ff9e09829cdb758d6f433__returnUrl|s:33:"/globaldebtmgmnt/index.php?r=user";899ca626168ff9e09829cdb758d6f433__id|s:1:"4";899ca626168ff9e09829cdb758d6f433__name|s:5:"admin";899ca626168ff9e09829cdb758d6f433__states|a:0:{}'),
+('injh3lgbambs1ikjrm74ajteg5', 1333468768, '899ca626168ff9e09829cdb758d6f433__id|s:1:"4";899ca626168ff9e09829cdb758d6f433__name|s:5:"admin";899ca626168ff9e09829cdb758d6f433__states|a:0:{}');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `tbl_account_payable`
@@ -87,14 +103,15 @@ CREATE TABLE IF NOT EXISTS `tbl_amortization` (
   `payment_period` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Fk_debtor_id` (`Fk_debtor_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `tbl_amortization`
 --
 
 INSERT INTO `tbl_amortization` (`id`, `Fk_debtor_id`, `payment_start_date`, `payment_end_date`, `total_monthly_cost`, `adminstration_fee`, `maintenance_fee`, `settlement_savings_fund`, `total_monthly_cost_total`, `total_adminstration_fee`, `total_maintenance_fee`, `total_settlement_savings_fund`, `created_at`, `updated_at`, `payment_period`) VALUES
-(1, 1, '2012-03-27 00:00:00', '2012-03-29 00:00:00', 271164, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-03-27 14:39:05', '0000-00-00 00:00:00', 0);
+(1, 1, '2012-03-27 00:00:00', '2012-03-29 00:00:00', 271164, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-03-27 14:39:05', '0000-00-00 00:00:00', 0),
+(2, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 554.268, 139.33, 18.1129, 396.825, 13302.4, 3343.91, 434.709, 9523.8, '2012-03-27 18:03:20', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -150,7 +167,59 @@ CREATE TABLE IF NOT EXISTS `tbl_creditor` (
   PRIMARY KEY (`id`),
   KEY `Fk_debtor_id` (`Fk_debtor_id`),
   KEY `Fk_creditor_userid` (`Fk_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+
+--
+-- Dumping data for table `tbl_creditor`
+--
+
+INSERT INTO `tbl_creditor` (`id`, `Fk_user_id`, `Fk_debtor_id`, `badge_number`, `name`, `address`, `postal_code`, `telephone1`, `telephone1_ext`, `telephone2`, `telephone2_ext`, `email`, `faxnumber`, `comments`, `created_at`, `updated_at`) VALUES
+(1, 4, NULL, NULL, 'Creditor1', 'Creditor1 Address', '0001', '4166823788', NULL, '4166823788', NULL, 'w2davids@yahoo.com', '', NULL, '2012-03-31 13:29:00', '0000-00-00 00:00:00'),
+(2, 4, NULL, NULL, 'Creditor1', 'Creditor1 Address', '0001', '4166823788', NULL, '4166823788', NULL, 'w2davids@yahoo.com', '', NULL, '2012-03-31 13:33:35', '0000-00-00 00:00:00'),
+(3, 4, NULL, NULL, 'wagied davids', '116 spadina', 'M5V3S2', '', NULL, '', NULL, 'w2davids@yahoo.com', '', NULL, '2012-03-31 13:36:22', '0000-00-00 00:00:00'),
+(4, 4, NULL, NULL, 'wagied davids', '116 spadina', 'M5V3S2', '', NULL, '', NULL, 'w2davids@yahoo.com', '', NULL, '2012-03-31 13:37:34', '0000-00-00 00:00:00'),
+(5, 4, NULL, NULL, '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 13:37:45', '0000-00-00 00:00:00'),
+(6, 4, NULL, NULL, 'wagied davids', '116 spadina', 'M5V3S2', '', NULL, '', NULL, 'w2davids@yahoo.com', '', NULL, '2012-03-31 19:49:56', '0000-00-00 00:00:00'),
+(7, 4, NULL, NULL, 'wagied davids', '116 spadina', 'M5V3S2', '', NULL, '', NULL, 'w2davids@yahoo.com', '', NULL, '2012-03-31 19:55:20', '0000-00-00 00:00:00'),
+(8, 4, NULL, NULL, 'wagied davids', '116 spadina', 'M5V3S2', '', NULL, '', NULL, 'w2davids@yahoo.com', '', NULL, '2012-03-31 19:56:24', '0000-00-00 00:00:00'),
+(9, 4, NULL, NULL, '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 20:07:04', '0000-00-00 00:00:00'),
+(10, 4, NULL, NULL, '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 20:08:57', '0000-00-00 00:00:00'),
+(11, 4, NULL, NULL, 'efzdafsfdsa', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 20:09:23', '0000-00-00 00:00:00'),
+(12, 4, NULL, NULL, 'afdafd', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 20:11:55', '0000-00-00 00:00:00'),
+(13, 4, NULL, NULL, 'adfasfafdf', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 20:12:37', '0000-00-00 00:00:00'),
+(14, 4, NULL, NULL, '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 20:30:14', '0000-00-00 00:00:00'),
+(15, 4, NULL, NULL, 'aeasfdavdgf', '', '', '', NULL, '', NULL, '', '', NULL, '2012-03-31 23:44:57', '0000-00-00 00:00:00'),
+(16, 4, NULL, NULL, 'wagied davids', '116 spadina', 'M5V3S2', '', NULL, '', NULL, 'w2davids@yahoo.com', '', NULL, '2012-04-02 17:40:14', '0000-00-00 00:00:00'),
+(17, 4, NULL, NULL, 'wagied davids', '116 spadina', 'M5V3S2', '', NULL, '', NULL, 'w2davids@yahoo.com', '', NULL, '2012-04-02 17:41:25', '0000-00-00 00:00:00'),
+(18, 4, NULL, NULL, 'afdafd', '', '', '', NULL, '', NULL, 'af', '', NULL, '2012-04-02 17:48:51', '0000-00-00 00:00:00'),
+(19, 4, NULL, NULL, 'Wagied Davids', '81 Navy Wharf Court', 'M5V3S2', '14168378196', NULL, '14168378196', NULL, 'w2davids@gmail.com', '', NULL, '2012-04-02 18:04:14', '0000-00-00 00:00:00'),
+(20, 4, 1, NULL, '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 18:07:33', '0000-00-00 00:00:00'),
+(21, 4, 1, 'adsads', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 18:08:36', '0000-00-00 00:00:00'),
+(22, 4, NULL, 'dsac', 'afdav ', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:20:41', '0000-00-00 00:00:00'),
+(23, 4, NULL, 'dsac', 'afdav ', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:21:11', '0000-00-00 00:00:00'),
+(24, 4, NULL, 'adcav', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:23:36', '0000-00-00 00:00:00'),
+(25, 4, NULL, 'adcav', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:23:48', '0000-00-00 00:00:00'),
+(26, 4, NULL, 'adcavadasffdsa', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:24:17', '0000-00-00 00:00:00'),
+(27, 4, NULL, 'adcavadasffdsa', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:24:32', '0000-00-00 00:00:00'),
+(28, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:26:44', '0000-00-00 00:00:00'),
+(29, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:33:31', '0000-00-00 00:00:00'),
+(30, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:36:17', '0000-00-00 00:00:00'),
+(31, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:38:42', '0000-00-00 00:00:00'),
+(32, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:39:06', '0000-00-00 00:00:00'),
+(33, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:41:34', '0000-00-00 00:00:00'),
+(34, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:43:45', '0000-00-00 00:00:00'),
+(35, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:44:41', '0000-00-00 00:00:00'),
+(36, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:46:46', '0000-00-00 00:00:00'),
+(37, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 19:59:52', '0000-00-00 00:00:00'),
+(38, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 20:20:29', '0000-00-00 00:00:00'),
+(39, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 20:47:06', '0000-00-00 00:00:00'),
+(40, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 20:47:18', '0000-00-00 00:00:00'),
+(41, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 20:47:24', '0000-00-00 00:00:00'),
+(42, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 20:49:56', '0000-00-00 00:00:00'),
+(43, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 20:53:23', '0000-00-00 00:00:00'),
+(44, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 23:18:40', '0000-00-00 00:00:00'),
+(45, 4, NULL, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 23:20:57', '0000-00-00 00:00:00'),
+(46, 4, 1, '', '', '', '', '', NULL, '', NULL, '', '', NULL, '2012-04-02 23:37:03', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -260,7 +329,14 @@ CREATE TABLE IF NOT EXISTS `tbl_debtor_budget_info` (
   `Fk_debtor_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Fk_budgetinfo_debtorid` (`Fk_debtor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_debtor_budget_info`
+--
+
+INSERT INTO `tbl_debtor_budget_info` (`id`, `gross_monthly_income`, `monthly_income`, `monthly_auto_expenses`, `car_payment1`, `car_payment2`, `recreational_vehicle`, `monthly_auto_payments`, `monthly_utilites`, `monthly_grocery_expenses`, `monthly_insurance_payments`, `rrsp`, `gas_and_electricuty`, `telephone`, `water_trash_sewer`, `cable_and_internet_services`, `food_stamp_or_other`, `spouse_monthly_takehome_pay`, `reason_for_hardship`, `estimated_home_value`, `remaining_mortgage_balance`, `total_number_dependants`, `household_expenses`, `total_debt_to_income_perc`, `total_expenses_to_income_variance`, `mortgage`, `rent`, `created_at`, `updated_at`, `Fk_debtor_id`) VALUES
+(1, 45000, 4000, 90, NULL, NULL, NULL, 90, 90, 300, NULL, NULL, NULL, NULL, NULL, NULL, 90, 90, 'poor', NULL, NULL, 2, 90, NULL, NULL, NULL, NULL, '2012-03-27 21:39:47', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -284,7 +360,14 @@ CREATE TABLE IF NOT EXISTS `tbl_debtor_financial_info` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `Fk_financialinfo_debtorid` (`Fk_debtor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_debtor_financial_info`
+--
+
+INSERT INTO `tbl_debtor_financial_info` (`id`, `Fk_debtor_id`, `name_financial_institution`, `branch_address`, `city`, `province`, `postal_code`, `phone_number`, `institution_numer`, `branch_number`, `account_number`, `created_at`, `updated_at`) VALUES
+(1, 1, 'TD', '123', 'Toronto', 'ON', 'M5V 2K6', '4166823788', '1234', '123', '12324324', '2012-03-27 21:38:24', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -324,7 +407,16 @@ CREATE TABLE IF NOT EXISTS `tbl_debtor_program_info` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `Fk_debtor_id` (`Fk_debtor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `tbl_debtor_program_info`
+--
+
+INSERT INTO `tbl_debtor_program_info` (`id`, `Fk_debtor_id`, `program_type`, `monthly_payment`, `type_of_debt`, `total_debt`, `original_debt`, `monthly_income`, `saf_monthly_payment`, `nsf_amount`, `monthly_payment_due_date`, `enrollment_date`, `first_monthly_payment_date`, `next_payment_due_date`, `contract_due_date`, `maintenance_fee_manual`, `maintenance_fee_automatic`, `admin_fee_automatic`, `admin_fee_percentage_automatic`, `admin_fee_manual`, `admin_fee_percentage_manual`, `service_fee_automatic`, `service_fee_percentage_automatic`, `service_fee_manual`, `service_fee_percentage_manual`, `savings_amount`, `savings_percentage`, `created_at`, `updated_at`) VALUES
+(2, 1, 5, 800, '', 21164, NULL, 4000, 200, 20, '2012-04-27 00:00:00', '2012-03-27 00:00:00', '2012-04-27 00:00:00', '0000-00-00 00:00:00', '2012-03-28 00:00:00', NULL, 0.13, NULL, 0.158, NULL, NULL, 0.45, NULL, NULL, NULL, NULL, NULL, '2012-03-27 19:58:44', '2012-03-29 22:49:51'),
+(3, 1, 1, NULL, '', 12000, 12000, 4000, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, 0.13, NULL, 0.158, NULL, NULL, 0.45, NULL, NULL, NULL, NULL, NULL, '2012-03-27 21:53:52', '0000-00-00 00:00:00'),
+(4, 1, 4, NULL, '', NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, 0.13, NULL, 0.16, NULL, NULL, 0.45, NULL, NULL, NULL, NULL, NULL, '2012-04-03 15:49:18', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -350,7 +442,14 @@ CREATE TABLE IF NOT EXISTS `tbl_debtor_progress` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `Fk_debtor_id` (`Fk_debtor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_debtor_progress`
+--
+
+INSERT INTO `tbl_debtor_progress` (`id`, `Fk_debtor_id`, `status`, `current_settlement_offer`, `current_settlement_perc`, `offer_date`, `offer_valid_until_date`, `type_of_debt`, `total_debt`, `days_behind`, `settlement_date`, `settlement_amount`, `savings`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL, '2012-03-29 00:00:00', '2012-03-30 00:00:00', '', 21164, 0, '2012-03-29 00:00:00', 0, 21164, '2012-03-27 22:01:39', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -391,11 +490,18 @@ CREATE TABLE IF NOT EXISTS `tbl_file_upload_item` (
   `filename` varchar(128) DEFAULT NULL,
   `create_user_id` int(11) DEFAULT NULL,
   `update_user_id` int(11) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `Fk_fileuploaditem_userid` (`Fk_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_file_upload_item`
+--
+
+INSERT INTO `tbl_file_upload_item` (`id`, `Fk_user_id`, `description`, `filename`, `create_user_id`, `update_user_id`, `created_at`, `updated_at`) VALUES
+(1, 4, 'test', 'globaldebtmgmnt.sql', NULL, NULL, '2012-03-31 16:44:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -488,14 +594,15 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   UNIQUE KEY `username_2` (`username`),
   KEY `username` (`username`),
   KEY `password` (`password`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id`, `username`, `password`, `salt`, `remember_me`, `created_at`, `updated_at`) VALUES
-(1, 'wagied', '368e1e9bb6a8f8f0c97f7897383a8b4c037b5b04', NULL, 0, '2012-03-27 12:12:12', '0000-00-00 00:00:00');
+(2, 'wagied', 'a6c2b22acb8c4414cc97256c3286abb69b27340e', NULL, 0, '2012-03-27 16:17:47', '0000-00-00 00:00:00'),
+(4, 'admin', '315f166c5aca63a157f7d41007675cb44a948b33', NULL, 0, '2012-03-29 17:33:50', '2012-03-29 17:34:02');
 
 --
 -- Constraints for dumped tables
