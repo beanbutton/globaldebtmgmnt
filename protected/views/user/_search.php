@@ -16,8 +16,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'salt'); ?>
-		<?php echo $form->textField($model,'salt',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->label($model,'role'); ?>
+		<?php echo $form->textField($model,'role' ); ?>
 	</div>
 
 	<div class="row">

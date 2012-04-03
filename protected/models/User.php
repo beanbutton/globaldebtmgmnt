@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * This is the model class for table "tbl_user".
  *
@@ -8,7 +7,7 @@
  * @property integer $id
  * @property string $username
  * @property string $password
- * @property string $salt
+ * @property string $role
  * @property integer $remember_me
  * @property string $created_at
  * @property string $updated_at
@@ -23,15 +22,13 @@
  * @property TblFileUploadItem[] $tblFileUploadItems
  * @property TblNegotiator[] $tblNegotiators
  */
-require_once (dirname(__FILE__) . '/../extensions/aes/AES.class.php');
- 
+
 class User extends CActiveRecord {
-	
-	public function scopeMembersOnline()
-	{
-		
+
+	public function scopeMembersOnline() {
+
 	}
-	
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -53,15 +50,15 @@ class User extends CActiveRecord {
 	public function rules() {
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array( 
-		//array('created_at, updated_at', 'required'), 
-		//array('remember_me', 'numerical', 'integerOnly' => true),
-		array('username, password', 'length', 'max' => 255), 
+		return array(
+		array('role', 'required'),
+		array('role', 'numerical', 'integerOnly' => true),
+		array('username, password', 'length', 'max' => 255),
 		//array('username, password, salt', 'length', 'max' => 255),
 		// The following rule is used by search().
 		// Please remove those attributes that should not be searched.
 		//array('id, username, password, salt, remember_me, created_at, updated_at', 'safe', 'on' => 'search'), );
-		array('id, username, password,  created_at, updated_at', 'safe', 'on' => 'search'), );
+		array('id, username, password, role  ,created_at, updated_at', 'safe', 'on' => 'search'), );
 
 	}
 
@@ -69,14 +66,11 @@ class User extends CActiveRecord {
 	 * @return before save
 	 */
 	public function beforeSave() {
-		$aes = new AES(AES::$z);
 		if ($this -> isNewRecord) {
-			$this -> password = sha1( $this -> password );
-			//$this -> salt = md5($this -> password);
+			$this -> password = sha1($this -> password);
 			$this -> created_at = new CDbExpression('NOW()');
 		} else {
-			//$this -> salt = md5($this -> password);
-			$this -> password = sha1( $this -> password );
+			$this -> password = sha1($this -> password);
 			$this -> updated_at = new CDbExpression('NOW()');
 
 		}
@@ -97,7 +91,14 @@ class User extends CActiveRecord {
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels() {
-		return array('id' => 'ID', 'username' => 'Username', 'password' => 'Password', 'salt' => 'Salt', 'remember_me' => 'Remember Me', 'created_at' => 'Created At', 'updated_at' => 'Updated At', );
+		return array('id' => 'ID', 
+			'username' => 'Username', 
+			'password' => 'Password', 
+			'role' => 'Role', 
+			'remember_me' => 'Remember Me', 
+			'created_at' => 'Created At', 
+			'updated_at' => 'Updated At', 
+			);
 	}
 
 	/**
@@ -113,12 +114,18 @@ class User extends CActiveRecord {
 		$criteria -> compare('id', $this -> id);
 		$criteria -> compare('username', $this -> username, true);
 		$criteria -> compare('password', $this -> password, true);
-		//$criteria -> compare('salt', $this -> salt, true);
-		$criteria -> compare('remember_me', $this -> remember_me);
+		$criteria -> compare('role', $this -> role, true);
 		$criteria -> compare('created_at', $this -> created_at, true);
 		$criteria -> compare('updated_at', $this -> updated_at, true);
 
 		return new CActiveDataProvider($this, array('criteria' => $criteria, ));
+	}
+
+	public function getRoles()
+	{
+		return array( '1' => 'admin', 
+					  '2'=> 'user', 
+					  '3'=>'guest');
 	}
 
 }

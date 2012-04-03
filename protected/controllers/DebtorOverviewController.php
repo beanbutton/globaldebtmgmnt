@@ -70,6 +70,14 @@ class DebtorOverviewController extends Controller {
 		//	throw new CHttpException(404, 'The requested page does not exist.');
 		return $model;
 	}
+
+	public function loadAmortizationModel($id) {
+		$debtor = Debtor::model() -> findByPk($id);		
+		$model = Amortization::model() -> findByAttributes(array("Fk_debtor_id" => $id));
+		if ($model === null)
+			throw new CHttpException(404, 'The requested page does not exist.');
+		return $model;
+	}
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -83,6 +91,7 @@ class DebtorOverviewController extends Controller {
 			'debtorBudgetInfoModel' => $this -> loadDebtorBudgetInfoModel($id), 
 			'debtorProgramInfoModel' => $this-> loadDebtorProgramInfoModel($id),
 			'debtorProgressModel' => $this-> loadDebtorProgressModel($id),
+			'amortizationModel' => $this->loadAmortizationModel($id),
 			//'debtorSettlementOfferModel' => $this-> loadSettlementOfferModel($id),
 			//'debtorSettlementOfferSummaryModel' => $this-> loadSettlementOfferSummaryModel($id),
 			
