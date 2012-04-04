@@ -12,7 +12,7 @@ class AmortizationController extends Controller {
 	 * @return array action filters
 	 */
 	public function filters() {
-		return array('accessControl',       // perform access control for CRUD operations
+		return array('accessControl',         // perform access control for CRUD operations
 		);
 	}
 
@@ -22,17 +22,51 @@ class AmortizationController extends Controller {
 	 * @return array access control rules
 	 */
 	public function accessRules() {
-		return array( 
-		array('allow', // allow all users to perform 'index' and 'view' actions
-		'actions' => array('index', 'view'), 'users' => array('*'), ), 
-		array('allow', // allow authenticated user to perform 'create' and 'update' actions
-		'actions' => array('create', 'update'), 'users' => array('@'), ), 
-		array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','index','view', 'list','create','update','delete'),
-				'users'=>array('admin'),
-			),
-		array('deny', // deny all users
+		return array( array('allow', // allow all users to perform 'index' and 'view' actions
+		'actions' => array('index', 'view'), 'users' => array('*'), ), array('allow', // allow authenticated user to perform 'create' and 'update' actions
+		'actions' => array('create', 'update'), 'users' => array('@'), ), array('allow', // allow admin user to perform 'admin' and 'delete' actions
+		'actions' => array('admin', 'index', 'view', 'list', 'create', 'update', 'delete'), 'users' => array('admin'), ), array('deny', // deny all users
 		'users' => array('*'), ), );
+	}
+
+	public function getColumnHeaders() {
+		return array('id', 
+		'Payment Date', 
+		'Total Monthly Cost', 
+		'Administration Fee', 
+		'Maintenance Fee', 
+		'Settlement Saving Fund');
+	}
+
+	public function getDataArray() {
+		//$model= $this->loadModel($id);
+		//$debtor = $this->loadDebtor($model->Fk_debtor_id);
+		$period= $this->getDateRange('2007-12-31', '2009-12-31');
+		$data= array();
+		$monthly_cost= 79.0;
+		$admin_fee= 12.50;
+		$maintenance_fee= 23.00;
+		$savings_fee= 10.00;
+		
+		$counter= 0;
+		foreach( $period as $date)
+		{
+			$data[]= array( $counter++, $date, $monthly_cost, $admin_fee, $maintenance_fee, $savings_fee );
+		}
+		return $data;
+	}
+
+	public function getDateRange($startDateStr, $endDateStr) {
+		$startDate= new DateTime( $startDateStr);
+		$endDate= new DateTime( $endDateStr);
+		
+		$interval = DateInterval::createFromDateString('last thursday of next month');
+		$period = new DatePeriod($startDate, $interval, $endDate, DatePeriod::EXCLUDE_START_DATE);
+		$dataRange = array();
+		foreach ($period as $dt) {
+			$dataRange[] = $dt -> format("Y-m-d");
+		}
+		return $dataRange;
 	}
 
 	/**
@@ -40,7 +74,13 @@ class AmortizationController extends Controller {
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id) {
-		$this -> render('view', array('model' => $this -> loadModel($id), ));
+		$columnsArray = $this -> getColumnHeaders();
+		$dataArray = $this -> getDataArray();
+
+		$this -> render('view', 
+		array('model' => $this -> loadModel($id), 
+		'columnsArray' => $columnsArray, 
+		'dataArray' => $dataArray));
 	}
 
 	/**
@@ -51,8 +91,8 @@ class AmortizationController extends Controller {
 		$model = new Amortization;
 		if (isset($_GET['id'])) {
 			$model -> Fk_debtor_id = $_GET['id'];
-			$debtor = Debtor::model() -> findByPk($model -> Fk_debtor_id);
-
+			$debtor = $this->loadDebtor($model -> Fk_debtor_id);
+			
 			if ($debtor) {
 				$this -> debtor_name = $debtor -> firstname . " " . $debtor -> lastname;
 			}
@@ -99,7 +139,7 @@ class AmortizationController extends Controller {
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
 
-		$this -> render('create', array('model' => $model, ));
+		$this -> render('create', array('model' => $model));
 	}
 
 	/**
@@ -119,7 +159,7 @@ class AmortizationController extends Controller {
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
 
-		$this -> render('update', array('model' => $model, ));
+		$this -> render('update', array('model' => $model));
 	}
 
 	/**
@@ -144,7 +184,7 @@ class AmortizationController extends Controller {
 	 */
 	public function actionIndex() {
 		$dataProvider = new CActiveDataProvider('Amortization');
-		$this -> render('index', array('dataProvider' => $dataProvider, ));
+		$this -> render('index', array('dataProvider' => $dataProvider, 'columnsArray' => $this -> getColumnHeaders()));
 	}
 
 	/**
@@ -171,6 +211,17 @@ class AmortizationController extends Controller {
 			throw new CHttpException(404, 'The requested page does not exist.');
 		return $model;
 	}
+	
+	
+	public function loadDebtor($id)
+	{
+		$debtor = Debtor::model() -> findByPk($id);
+		if ($debtor === null)
+		{
+			throw new CHttpException(404, 'Debtor not found!');			
+		}
+		return $debtor;
+	}
 
 	/**
 	 * Performs the AJAX validation.
@@ -181,6 +232,10 @@ class AmortizationController extends Controller {
 			echo CActiveForm::validate($model);
 			Yii::app() -> end();
 		}
+	}
+
+	public function getHeaders() {
+		return array('id', 'Payment Date', 'Total Monthly Cost', 'Administration Fee', 'Maintenance Fee', 'Settlement Saving Fund');
 	}
 
 }
