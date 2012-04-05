@@ -11,6 +11,9 @@
 	<b><?php echo CHtml::encode($data -> getAttributeLabel('payment_end_date'));?>:</b>
 	<?php echo CHtml::encode($data -> payment_end_date);?>
 	<br />
+	<b><?php echo CHtml::encode($data -> getAttributeLabel('payment_period'));?>:</b>
+	<?php echo CHtml::encode($data -> payment_period);?>
+	<br />
 	<b><?php echo CHtml::encode($data -> getAttributeLabel('total_monthly_cost'));?>:</b>
 	<?php echo CHtml::encode($data -> total_monthly_cost);?>
 	<br />
@@ -26,10 +29,10 @@
 		array('collapsed' => false, 
 			  'enableSort' => true, 
 			  'sortColumn' => 1, 
-			  'sortOrder' => 'desc', 
+			  'sortOrder' => 'asc', 
 			  'title' => 'Payment Plan Table', 
 			  'extra' => '+Hide', 
 			  'columns' =>  $this->columnHeaders, 
-			  'rows' => $this->dataArray, 
-			  'footer' => 'Total rows: ' . count( $this->dataArray)));
+			  'rows' => $this->getAmortizationPlan($data -> id), 
+			  'footer' => 'Total rows: ' . count( $this->getAmortizationPlan($data -> id))));
 ?>

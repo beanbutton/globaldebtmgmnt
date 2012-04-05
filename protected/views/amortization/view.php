@@ -22,6 +22,7 @@ $this->menu=array(
 		'Fk_debtor_id',
 		'payment_start_date',
 		'payment_end_date',
+		'payment_period',
 		'total_monthly_cost',
 		'adminstration_fee',
 		'maintenance_fee',
@@ -30,7 +31,5 @@ $this->menu=array(
 		'total_adminstration_fee',
 		'total_maintenance_fee',
 		'total_settlement_savings_fund',
-		//'created_at',
-		//'updated_at',
 	),
 )); ?>

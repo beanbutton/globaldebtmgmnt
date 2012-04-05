@@ -26,6 +26,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'payment_period'); ?>
+		<?php echo $form->textField($model,'payment_period'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->label($model,'total_monthly_cost'); ?>
 		<?php echo $form->textField($model,'total_monthly_cost'); ?>
 	</div>

@@ -38,17 +38,25 @@ class AmortizationController extends Controller {
 		'Settlement Saving Fund');
 	}
 
-	public function getDataArray() {
-		//$model= $this->loadModel($id);
-		//$debtor = $this->loadDebtor($model->Fk_debtor_id);
-		$period= $this->getDateRange('2007-12-31', '2009-12-31');
-		$data= array();
-		$monthly_cost= 79.0;
-		$admin_fee= 12.50;
-		$maintenance_fee= 23.00;
-		$savings_fee= 10.00;
+	public function getAmortizationPlan($id) {
+		$model= $this->loadModel($id);
+		$debtor = $this->loadDebtor($model->Fk_debtor_id);
 		
-		$counter= 0;
+		$payment_start_date= $model->payment_start_date;
+		$payment_period= $model->payment_period;
+		
+		$start_date= date( "Y-m-d",strtotime( $payment_start_date ));
+		$end_date= date( "Y-m-d",strtotime($start_date ."+".$payment_period."month"));
+		$period= $this->getDateRange( $start_date, $end_date);
+		
+		
+		$monthly_cost= $model->total_monthly_cost;
+		$admin_fee= $model->adminstration_fee;
+		$maintenance_fee= $model-> maintenance_fee;
+		$savings_fee= $model->settlement_savings_fund;
+		
+		$counter= 1;
+		$data= array();
 		foreach( $period as $date)
 		{
 			$data[]= array( $counter++, $date, $monthly_cost, $admin_fee, $maintenance_fee, $savings_fee );
@@ -74,13 +82,12 @@ class AmortizationController extends Controller {
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id) {
+		$model= $this -> loadModel($id);
 		$columnsArray = $this -> getColumnHeaders();
-		$dataArray = $this -> getDataArray();
 
 		$this -> render('view', 
-		array('model' => $this -> loadModel($id), 
-		'columnsArray' => $columnsArray, 
-		'dataArray' => $dataArray));
+		array('model' => $model, 
+		'columnsArray' => $columnsArray, ));
 	}
 
 	/**
@@ -135,6 +142,9 @@ class AmortizationController extends Controller {
 
 		if (isset($_POST['Amortization'])) {
 			$model -> attributes = $_POST['Amortization'];
+			$start_date= date( "Y-m-d",strtotime( $model->payment_start_date ));
+			$end_date= date( "Y-m-d",strtotime($start_date ."+".$model->payment_period."month"));
+			$model->payment_end_date= $end_date;
 			if ($model -> save())
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
@@ -184,7 +194,8 @@ class AmortizationController extends Controller {
 	 */
 	public function actionIndex() {
 		$dataProvider = new CActiveDataProvider('Amortization');
-		$this -> render('index', array('dataProvider' => $dataProvider, 'columnsArray' => $this -> getColumnHeaders()));
+		$this -> render('index', 
+		array('dataProvider' => $dataProvider, ));
 	}
 
 	/**
