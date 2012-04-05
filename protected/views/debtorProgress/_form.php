@@ -12,11 +12,19 @@
 	<?php echo "Debtor: ". $this->debtor_name; ?>
 
 	<div class="row">
-		<?php echo CHtml::encode("Debtor");?>
+		<?php echo CHtml::activeLabel($model,'Fk_debtor_id',array('label'=>'Debtor File#'))?>
 		<?php echo $form->dropDownList($model, 'Fk_debtor_id', 
 		CHtml::listData(Debtor::model()->findAll(), 'id', 'file_number'), 
 			array('empty'=>'Select Debtor')); ?>
 		<?php echo $form -> error($model, 'Fk_debtor_id');?>
+	</div>
+	
+	<div class="col">	
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->dropDownList( $model, 'status', 
+              $this->getStatus(),
+              array('empty' => '(Select a Status)'));
+		?>
 	</div>
 
 	<div class="col">
@@ -51,6 +59,22 @@
 		<?php echo $form->error($model,'offer_valid_until_date'); ?>
 	</div>
 
+	<div class="col">
+		<?php echo $form->labelEx($model,'settlement_date'); ?>
+		<?php echo $form->textField($model,'settlement_date'); ?>
+                <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
+                array("id"=>"c_button3","class"=>"pointer")); ?>
+                <?php $this->widget('application.extensions.calendar.SCalendar',
+                    array(
+                    'inputField'=>'DebtorProgress_settlement_date',
+                    'button'=>'c_button3',
+                    'ifFormat'=>'%Y-%m-%d',
+                ));
+                ?>
+
+		<?php echo $form->error($model,'settlement_date'); ?>
+	</div>
+	
         <div class="col">
 		<?php echo $form->labelEx($model,'current_settlement_offer'); ?>
 		<?php echo $form->textField($model,'current_settlement_offer'); ?>
@@ -82,22 +106,6 @@
 	</div>
 
 	<div class="col">
-		<?php echo $form->labelEx($model,'settlement_date'); ?>
-		<?php echo $form->textField($model,'settlement_date'); ?>
-                <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button3","class"=>"pointer")); ?>
-                <?php $this->widget('application.extensions.calendar.SCalendar',
-                    array(
-                    'inputField'=>'DebtorProgress_settlement_date',
-                    'button'=>'c_button3',
-                    'ifFormat'=>'%Y-%m-%d',
-                ));
-                ?>
-
-		<?php echo $form->error($model,'settlement_date'); ?>
-	</div>
-
-	<div class="col">
 		<?php echo $form->labelEx($model,'settlement_amount'); ?>
 		<?php echo $form->textField($model,'settlement_amount'); ?>
 		<?php echo $form->error($model,'settlement_amount'); ?>
@@ -109,13 +117,6 @@
 		<?php echo $form->error($model,'savings'); ?>
 	</div>
 	
-	<div class="col">	
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->dropDownList( $model, 'status', 
-              array('1' => 'Accepted', '2' => 'Rejected', '3' => 'In Progress'),
-              array('empty' => '(Select a Status)'));
-		?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

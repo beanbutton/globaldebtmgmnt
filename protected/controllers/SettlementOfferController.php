@@ -8,6 +8,11 @@ class SettlementOfferController extends Controller {
 	public $layout = '//layouts/column2';
 	public $debtor_name;
 
+	public function getStatus()
+	{
+		return GlobalDebtManagementUtils::getStatus();
+	}
+
 	/**
 	 * @return array action filters
 	 */

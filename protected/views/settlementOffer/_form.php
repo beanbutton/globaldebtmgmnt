@@ -13,19 +13,13 @@
 
 
 	<div class="row">
-		<?php echo CHtml::encode("Debtor");?>
+		<?php echo CHtml::activeLabel($model,'Fk_debtor_id',array('label'=>'Debtor File#'))?>
 		<?php echo $form->dropDownList($model, 'Fk_debtor_id', 
 		CHtml::listData(Debtor::model()->findAll(), 'id', 'file_number'), 
 			array('empty'=>'Select Debtor')); ?>
 		<?php echo $form -> error($model, 'Fk_debtor_id');?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'file_number'); ?>
-		<?php echo $form->textField($model,'file_number',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'file_number'); ?>
-	</div>
-	
 	<div class="col">	
 		<?php echo $form->labelEx($model,'offer_status'); ?>
 		<?php echo $form->dropDownList( $model, 'offer_status', 

@@ -16,6 +16,11 @@ class DebtorProgressController extends Controller {
 		return array('accessControl',  // perform access control for CRUD operations
 		);
 	}
+	
+	public function getStatus()
+	{
+		return GlobalDebtManagementUtils::getStatus();
+	}
 
 	/**
 	 * Specifies the access control rules.
@@ -23,11 +28,17 @@ class DebtorProgressController extends Controller {
 	 * @return array access control rules
 	 */
 	public function accessRules() {
-		return array( 
-		array('allow', // allow all users to perform 'index' and 'view' actions
-		'actions' => array('index', 'view'), 'users' => array('*'), ), array('allow', // allow authenticated user to perform 'create' and 'update' actions
-		'actions' => array('create', 'update', 'index', 'view', 'delete'), 'users' => array('@'), ), array('allow', // allow admin user to perform 'admin' and 'delete' actions
-		'actions' => array('admin', 'delete'), 'users' => array('admin'), ), array('deny', // deny all users
+		return array(
+		//array('allow',  // allow all users to perform 'index' and 'view' actions
+		//	'actions'=>array('index','view'),
+		//	'users'=>array('*'),
+		//),
+		array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			'actions'=>array('index','view'),
+			'users'=>array('@'),
+		),
+		array('allow', // allow admin user to perform 'admin' and 'delete' actions
+		'actions' => array('admin', 'index', 'view', 'list', 'create', 'update', 'delete'), 'users' => array('admin'), ), array('deny', // deny all users
 		'users' => array('*'), ), );
 	}
 
@@ -43,7 +54,7 @@ class DebtorProgressController extends Controller {
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id) {
+	public function actionCreate() {
 		$model = new DebtorProgress;
 
 		if (isset($_GET['id'])) {

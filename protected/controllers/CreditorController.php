@@ -32,7 +32,8 @@ class CreditorController extends Controller {
 		//	'users'=>array('@'),
 		//),
 		array('allow', // allow admin user to perform 'admin' and 'delete' actions
-		'actions' => array('admin', 'index', 'view', 'create', 'update', 'delete'), 'users' => array('admin'), ), array('deny', // deny all users
+		'actions' => array('admin', 'index', 'view', 'create', 'update', 'delete'), 'users' => array('admin'), ),
+		 array('deny', // deny all users
 		'users' => array('*'), ), );
 	}
 

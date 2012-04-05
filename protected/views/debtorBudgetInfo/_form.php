@@ -10,7 +10,7 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo CHtml::encode("Debtor");?>
+		<?php echo CHtml::activeLabel($model,'Fk_debtor_id',array('label'=>'Debtor File#'))?>
 		<br/>		
 		<?php echo $form->dropDownList($model, 'Fk_debtor_id', 
 		CHtml::listData(Debtor::model()->findAll(), 'id', 'file_number'), 
