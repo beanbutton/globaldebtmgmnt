@@ -65,7 +65,11 @@ class Amortization extends CActiveRecord {
 	public function rules() {
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array( array('payment_period', 'required'), array('Fk_debtor_id', 'numerical', 'integerOnly' => true), array('total_monthly_cost, adminstration_fee, payment_period, maintenance_fee, settlement_savings_fund, total_monthly_cost_total, total_adminstration_fee, total_maintenance_fee, total_settlement_savings_fund', 'numerical'), array('payment_start_date, payment_end_date', 'safe'),
+		return array( 
+		array('Fk_debtor_id, payment_period', 'required'), 
+		array('Fk_debtor_id', 'numerical', 'integerOnly' => true),
+		array('total_monthly_cost, adminstration_fee, payment_period, maintenance_fee, settlement_savings_fund, total_monthly_cost_total, total_adminstration_fee, total_maintenance_fee, total_settlement_savings_fund', 'numerical'), 
+		array('payment_start_date, payment_end_date', 'safe'),
 		// The following rule is used by search().
 		// Please remove those attributes that should not be searched.
 		array('id, Fk_debtor_id, payment_start_date, payment_end_date, total_monthly_cost, adminstration_fee, maintenance_fee, settlement_savings_fund, total_monthly_cost_total, total_adminstration_fee, total_maintenance_fee, total_settlement_savings_fund, created_at, updated_at', 'safe', 'on' => 'search'), );

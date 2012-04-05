@@ -10,10 +10,14 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'Fk_debtor_id'); ?>
-		<?php echo $form->textField($model,'Fk_debtor_id'); ?>
-		<?php echo $form->error($model,'Fk_debtor_id'); ?>
+		<?php echo CHtml::encode("Debtor");?>
+		<br/>		
+		<?php echo $form->dropDownList($model, 'Fk_debtor_id', 
+		CHtml::listData(Debtor::model()->findAll(), 'id', 'file_number'), 
+			array('empty'=>'Select Debtor')); ?>
+		<?php echo $form -> error($model, 'Fk_debtor_id');?>
 	</div>
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'total_debt'); ?>
