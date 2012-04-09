@@ -10,12 +10,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'Fk_user_id'); ?>
-		<?php echo $form->textField($model,'Fk_user_id'); ?>
-		<?php echo $form->error($model,'Fk_user_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'firstname'); ?>
 		<?php echo $form->textField($model,'firstname',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'firstname'); ?>
@@ -67,18 +61,6 @@
 		<?php echo $form->labelEx($model,'emergency_phone_number'); ?>
 		<?php echo $form->textField($model,'emergency_phone_number',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'emergency_phone_number'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'created_at'); ?>
-		<?php echo $form->textField($model,'created_at'); ?>
-		<?php echo $form->error($model,'created_at'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updated_at'); ?>
-		<?php echo $form->textField($model,'updated_at'); ?>
-		<?php echo $form->error($model,'updated_at'); ?>
 	</div>
 
 	<div class="row buttons">

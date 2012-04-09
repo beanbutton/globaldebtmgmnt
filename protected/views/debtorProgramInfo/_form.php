@@ -9,8 +9,6 @@
 
 	<?php echo $form->errorSummary($model); ?>
 	
-	<?php echo "Debtor: ". $this->debtor_name; ?>
-
 	<div class="row">
 		<?php echo CHtml::activeLabel($model,'Fk_debtor_id',array('label'=>'Debtor File#'))?>
 		<?php echo $form->dropDownList($model, 'Fk_debtor_id', 
@@ -19,19 +17,17 @@
 		<?php echo $form -> error($model, 'Fk_debtor_id');?>
 	</div>
 
-
-	   	<div class="col">
-		<?php echo $form->labelEx($model,'type_of_debt'); ?>
-		<?php echo $form->textField($model,'type_of_debt'); ?>
-		<?php echo $form->error($model,'type_of_debt'); ?>
-	</div>
-
-
 	<div class="col">	
 		<?php echo $form->labelEx($model,'program_type'); ?>
 		<?php echo $form->dropDownList( $model, 'program_type', $this->getMonths(),
 			  array('empty' => '(Select a Program)'));
 		?>
+	</div>
+	
+	<div class="col">
+		<?php echo $form->labelEx($model,'type_of_debt'); ?>
+		<?php echo $form->textField($model,'type_of_debt'); ?>
+		<?php echo $form->error($model,'type_of_debt'); ?>
 	</div>
 
 	<div class="col">
