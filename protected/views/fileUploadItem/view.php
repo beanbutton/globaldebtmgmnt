@@ -19,7 +19,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'Fk_user_id',
+		//'Fk_user_id',
 		'description',
 		'filename',
 		'created_at',
@@ -29,8 +29,8 @@ $this->menu=array(
             'type'=>'raw',
             'value'=>CHtml::link(
             	CHtml::encode($model->filename), 
-            	"fileUploadItem/download", 
-            	array( "id" => $model->id)
+            	array( "fileUploadItem/download", 
+            	"id" => $model->id)
 				),
 	),
 ))); ?>

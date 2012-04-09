@@ -43,17 +43,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'Fk_user_id',
+		//'Fk_user_id',
 		'description',
 		'filename',
-		//'create_user_id',
-		//'update_user_id',
-		/*
 		'created_at',
-		'updated_at',
-		*/
+		//'updated_at',
 		array(
 			'class'=>'CButtonColumn',
+			//'downloadButtonUrl'=>Yii::app()->createUrl('/fileUploadItem/download', array('id' => $model->id))
 		),
 	),
 )); ?>
