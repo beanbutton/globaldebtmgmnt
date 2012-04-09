@@ -22,9 +22,15 @@ $this->menu=array(
 		'Fk_user_id',
 		'description',
 		'filename',
-		'create_user_id',
-		'update_user_id',
 		'created_at',
 		'updated_at',
+		array(
+			'label'=>'Filename',
+            'type'=>'raw',
+            'value'=>CHtml::link(
+            	CHtml::encode($model->filename), 
+            	"fileUploadItem/download", 
+            	array( "id" => $model->id)
+				),
 	),
-)); ?>
+))); ?>

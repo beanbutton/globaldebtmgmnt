@@ -46,8 +46,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'Fk_user_id',
 		'description',
 		'filename',
-		'create_user_id',
-		'update_user_id',
+		//'create_user_id',
+		//'update_user_id',
 		/*
 		'created_at',
 		'updated_at',

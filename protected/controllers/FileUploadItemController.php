@@ -33,12 +33,24 @@ class FileUploadItemController extends Controller {
 		//'actions' => array('create', 'update'), 
 		//'users' => array('@'), ), 
 		array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','index','view', 'list','create','update','delete'),
+				'actions'=>array('admin','index','view', 'list','create','update','delete', 'download'),
 				'users'=>array('admin'),
 			), 
 		array('deny', // deny all users
 		'users' => array('*'), ), );
 	}
+
+	public function actionDownload($id)
+	{
+		$model= $this->loadModel($id);
+		if ($model === null)
+		{
+			throw new CHttpException(404, 'Error in downloading file!');			
+		}
+		$file= Yii::app() -> basePath . $this -> FILE_UPLOAD_PATH . $model -> filename;
+		return Yii::app()->getRequest()->sendFile( $model->filename, @file_get_contents($file));	
+	}
+
 
 	/**
 	 * Displays a particular model.

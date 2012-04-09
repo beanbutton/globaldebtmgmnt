@@ -97,7 +97,7 @@ class FileUploadItem extends CActiveRecord {
         $criteria -> compare('create_user_id', $this -> create_user_id);
         $criteria -> compare('update_user_id', $this -> update_user_id);
         $criteria -> compare('created_at', $this -> created_at, true);
-        $criteria -> compare('updatef_at', $this -> updated_at, true);
+        $criteria -> compare('updated_at', $this -> updated_at, true);
 
         return new CActiveDataProvider($this, array('criteria' => $criteria, ));
     }
