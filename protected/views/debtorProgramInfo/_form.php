@@ -67,7 +67,7 @@
 		<?php echo $form->error($model,'saf_monthly_payment'); ?>
 	</div>
 
-        <div class="col">
+   <div class="col">
 		<?php echo $form->labelEx($model,'monthly_payment_due_date'); ?>
 		<?php echo $form->textField($model,'monthly_payment_due_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",

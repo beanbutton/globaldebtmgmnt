@@ -16,9 +16,19 @@
 		<?php echo $form->error($model,'invoice_number'); ?>
 	</div>
 
-	<div class="row">
+	<div class="col">
 		<?php echo $form->labelEx($model,'invoice_date'); ?>
 		<?php echo $form->textField($model,'invoice_date'); ?>
+                <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
+                array("id"=>"c_button1","class"=>"pointer")); ?>
+                <?php $this->widget('application.extensions.calendar.SCalendar',
+                    array(
+                    'inputField'=>'AccountReceivable_invoice_date',
+                    'button'=>'c_button1',
+                    'ifFormat'=>'%Y-%m-%d',
+                ));
+                ?>
+
 		<?php echo $form->error($model,'invoice_date'); ?>
 	</div>
 
