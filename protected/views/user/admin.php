@@ -43,14 +43,19 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'username',
+		array(
+			'name'=>'username',
+            'type'=>'raw',
+            'value'=> 'CHtml::link(
+            	CHtml::encode($data->username), 
+            	array( "user/view", 
+            	"id" => $data->id)
+				)',
+		),
 		'password',
-		//'salt',
 		'remember_me',
 		'created_at',
-		/*
 		'updated_at',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),
