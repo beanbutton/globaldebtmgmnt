@@ -48,7 +48,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'type'=>'raw',
             'value'=> 'CHtml::link(
             	CHtml::encode($data->Fk_debtor_id), 
-            	array( "debtor/view", 
+            	array( "debtorOverview/view", 
             	"id" => $data->Fk_debtor_id)
 				)',
 		),
