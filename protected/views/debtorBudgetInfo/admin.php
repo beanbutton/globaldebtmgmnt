@@ -43,6 +43,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		array(
+			'name'=>'Fk_debtor_id',
+            'type'=>'raw',
+            'value'=> 'CHtml::link(
+            	CHtml::encode($data->Fk_debtor_id), 
+            	array( "debtorOverview/view", 
+            	"id" => $data->Fk_debtor_id)
+				)',
+		),
 		'monthly_income',
 		'monthly_auto_expenses',
 		'car_payment1',
