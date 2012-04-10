@@ -8452,3 +8452,9 @@ REQUEST_URI=/globaldebtmgmnt/index.php?r=fileUploadItem/admin
 in C:\xampp\htdocs\globaldebtmgmnt\protected\views\fileUploadItem\admin.php (64)
 in C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\FileUploadItemController.php (152)
 in C:\xampp\htdocs\globaldebtmgmnt\index.php (13)
+2012/04/11 00:10:29 [warning] [application] Failed to set unsafe attribute "remember_me" of "User".
+in C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\UserController.php (95)
+in C:\xampp\htdocs\globaldebtmgmnt\index.php (13)
+2012/04/11 00:10:36 [warning] [application] Failed to set unsafe attribute "remember_me" of "User".
+in C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\UserController.php (95)
+in C:\xampp\htdocs\globaldebtmgmnt\index.php (13)
