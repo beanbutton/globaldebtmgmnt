@@ -50,7 +50,8 @@ class Negotiator extends CActiveRecord {
     public function rules() {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
-        return array( array('Fk_user_id, created_at', 'required'), 
+        return array( 
+        array('Fk_debtor_id', 'required'), 
         array('Fk_user_id, Fk_debtor_id', 'numerical', 'integerOnly' => true), 
         array('name, address, telephone, email, faxnumber', 'length', 'max' => 255), 
         array('updated_at', 'safe'),

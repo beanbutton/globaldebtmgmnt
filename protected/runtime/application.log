@@ -8472,3 +8472,47 @@ Stack trace:
 #9 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
 #10 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
 #11 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=debtorOverview/view&id=1234
+2012/04/11 18:21:11 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`globaldebtmgmnt`.`tbl_negotiator`, CONSTRAINT `Fk_negotiator_userid` FOREIGN KEY (`Fk_user_id`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE). The SQL statement executed was: INSERT INTO `tbl_negotiator` (`updated_at`, `Fk_debtor_id`, `name`, `address`, `telephone`, `email`, `faxnumber`, `created_at`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, NOW()).
+in C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\NegotiatorController.php (67)
+in C:\xampp\htdocs\globaldebtmgmnt\index.php (13)
+2012/04/11 18:21:11 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`globaldebtmgmnt`.`tbl_negotiator`, CONSTRAINT `Fk_negotiator_userid` FOREIGN KEY (`Fk_user_id`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE). The SQL statement executed was: INSERT INTO `tbl_negotiator` (`updated_at`, `Fk_debtor_id`, `name`, `address`, `telephone`, `email`, `faxnumber`, `created_at`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, NOW())' in C:\xampp\htdocs\YiiRoot\framework\db\CDbCommand.php:336
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
+#1 C:\xampp\htdocs\YiiRoot\framework\db\ar\CActiveRecord.php(781): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\NegotiatorController.php(67): CActiveRecord->save()
+#3 C:\xampp\htdocs\YiiRoot\framework\web\actions\CInlineAction.php(50): NegotiatorController->actionCreate()
+#4 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\YiiRoot\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(283): CFilterChain->run()
+#11 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('create')
+#13 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('negotiator/crea...')
+#14 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#16 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=negotiator/create
+2012/04/11 18:21:16 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`globaldebtmgmnt`.`tbl_negotiator`, CONSTRAINT `Fk_negotiator_userid` FOREIGN KEY (`Fk_user_id`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE). The SQL statement executed was: INSERT INTO `tbl_negotiator` (`updated_at`, `Fk_debtor_id`, `name`, `address`, `telephone`, `email`, `faxnumber`, `created_at`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, NOW()).
+in C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\NegotiatorController.php (67)
+in C:\xampp\htdocs\globaldebtmgmnt\index.php (13)
+2012/04/11 18:21:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`globaldebtmgmnt`.`tbl_negotiator`, CONSTRAINT `Fk_negotiator_userid` FOREIGN KEY (`Fk_user_id`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE). The SQL statement executed was: INSERT INTO `tbl_negotiator` (`updated_at`, `Fk_debtor_id`, `name`, `address`, `telephone`, `email`, `faxnumber`, `created_at`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, NOW())' in C:\xampp\htdocs\YiiRoot\framework\db\CDbCommand.php:336
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
+#1 C:\xampp\htdocs\YiiRoot\framework\db\ar\CActiveRecord.php(781): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\NegotiatorController.php(67): CActiveRecord->save()
+#3 C:\xampp\htdocs\YiiRoot\framework\web\actions\CInlineAction.php(50): NegotiatorController->actionCreate()
+#4 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\YiiRoot\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(283): CFilterChain->run()
+#11 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('create')
+#13 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('negotiator/crea...')
+#14 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#16 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=negotiator/create

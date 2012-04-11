@@ -57,6 +57,8 @@ class NegotiatorController extends Controller
 	public function actionCreate()
 	{
 		$model=new Negotiator;
+		$model->Fk_user_id= Yii::app()->user->getId();	
+		
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
