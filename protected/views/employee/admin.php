@@ -43,7 +43,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'Fk_user_id',
+		array(
+			'name'=>'Fk_user_id',
+            'type'=>'raw',
+            'value'=> 'CHtml::link(
+            	CHtml::encode($data->Fk_user_id), 
+            	array( "employee/view", 
+            	"id" => $data->Fk_user_id)
+				)',
+		),
 		'firstname',
 		'lastname',
 		'phone_number',
