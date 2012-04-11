@@ -42,7 +42,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'Fk_user_id',
 		'id',
 		array(
 			'name'=>'Fk_debtor_id',
@@ -56,12 +55,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'name',
 		'address',
 		'telephone',
-		/*
 		'email',
 		'faxnumber',
 		'created_at',
 		'updated_at',
-		*/
+	
 		array(
 			'class'=>'CButtonColumn',
 		),

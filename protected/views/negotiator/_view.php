@@ -9,7 +9,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('Fk_debtor_id')); ?>:</b>
-	<?php echo CHtml::encode($data->Fk_debtor_id); ?>
+	<?php echo CHtml::link( CHtml::encode($data->Fk_debtor_id),
+				array('debtorOverview/view', 'id'=>$data->Fk_debtor_id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
@@ -28,7 +29,7 @@
 	<?php echo CHtml::encode($data->email); ?>
 	<br />
 
-	<?php /*
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('faxnumber')); ?>:</b>
 	<?php echo CHtml::encode($data->faxnumber); ?>
 	<br />
@@ -41,6 +42,6 @@
 	<?php echo CHtml::encode($data->updated_at); ?>
 	<br />
 
-	*/ ?>
+
 
 </div>
