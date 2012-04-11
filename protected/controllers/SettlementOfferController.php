@@ -55,7 +55,6 @@ class SettlementOfferController extends Controller {
 
 		if (isset($_GET['id'])) {
 			$model -> Fk_debtor_id = $_GET['id'];
-			
 			$debtor = Debtor::model() -> findByPk($model -> Fk_debtor_id);
 			if ($debtor) {
 				$this -> debtor_name = $debtor -> firstname . " " . $debtor -> lastname;

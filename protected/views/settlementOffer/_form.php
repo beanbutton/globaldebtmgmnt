@@ -8,9 +8,6 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-	
-	<?php echo "Debtor: ". $this->debtor_name; ?>
-
 
 	<div class="row">
 		<?php echo CHtml::activeLabel($model,'Fk_debtor_id',array('label'=>'Debtor File#'))?>
@@ -23,7 +20,7 @@
 	<div class="col">	
 		<?php echo $form->labelEx($model,'offer_status'); ?>
 		<?php echo $form->dropDownList( $model, 'offer_status', 
-              array('1' => 'Accepted', '2' => 'Rejected', '3' => 'In Progress'),
+              $this->getStatus(),
               array('empty' => '(Select a Status)'));
 		?>
 	</div>
