@@ -45,7 +45,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
     'selectionChanged'=>"function(id){window.location='" . Yii::app()->urlManager->createUrl('debtorOverview/view', array('id'=>'')) . "' + $.fn.yiiGridView.getSelection(id);}",
 	'columns'=>array(
 		'id',
-		'Fk_user_id',
 		array(
 			'name'=>'file_number',
             'type'=>'raw',

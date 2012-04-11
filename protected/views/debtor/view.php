@@ -19,7 +19,6 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'Fk_user_id',
 		'file_number',
 		'firstname',
 		'lastname',

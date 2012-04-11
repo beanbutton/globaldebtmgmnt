@@ -8458,3 +8458,17 @@ in C:\xampp\htdocs\globaldebtmgmnt\index.php (13)
 2012/04/11 00:10:36 [warning] [application] Failed to set unsafe attribute "remember_me" of "User".
 in C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\UserController.php (95)
 in C:\xampp\htdocs\globaldebtmgmnt\index.php (13)
+2012/04/11 18:13:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\DebtorOverviewController.php:14
+Stack trace:
+#0 C:\xampp\htdocs\globaldebtmgmnt\protected\controllers\DebtorOverviewController.php(88): DebtorOverviewController->loadDebtorModel('1234')
+#1 [internal function]: DebtorOverviewController->actionView('1234')
+#2 C:\xampp\htdocs\YiiRoot\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(DebtorOverviewController), Array)
+#3 C:\xampp\htdocs\YiiRoot\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(DebtorOverviewController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('view')
+#8 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('debtorOverview/...')
+#9 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=debtorOverview/view&id=1234

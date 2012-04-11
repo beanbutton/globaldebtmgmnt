@@ -4,10 +4,6 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('Fk_user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->Fk_user_id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('file_number')); ?>:</b>
 	<?php echo CHtml::encode($data->file_number); ?>
 	<br />
@@ -28,63 +24,6 @@
 	<?php echo CHtml::encode($data->drivers_licence); ?>
 	<br />
 
-	<b><?php echo CHtml::encode( "Create Debtor Financial Info" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorFinancialInfo/create', 'id' => $data->id )); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode( "View Debtor Financial Info" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorFinancialInfo/view', 'id' => $data->id )); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode( "Create Debtor Budget Info" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorBudgetInfo/create', 'id' => $data->id )); ?>
-	<br />
-
-	<b><?php echo CHtml::encode( "View Debtor Budget Info" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorBudgetInfo/view', 'id' => $data->id )); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode( "Create Debtor Program Info" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorProgramInfo/create', 'id' => $data->id )); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode( "View Debtor Program Info" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorProgramInfo/view', 'id' => $data->id )); ?>
-	<br />
-			
-	<b><?php echo CHtml::encode( "Create Debtors Progress" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorProgress/create', 'id' => $data->id )); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode( "View Debtors Progress" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('debtorProgress/view', 'id' => $data->id )); ?>
-	<br />
-	
-	
-	<b><?php echo CHtml::encode( "Create Amortization" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('amortization/create', 'id' => $data->id )); ?>
-	<br />
-
-	<b><?php echo CHtml::encode( "View Amortization" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('amortization/view', 'id' => $data->id )); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode( "Create Settlement Offer" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('settlementOffer/create', 'id' => $data->id )); ?>
-	<br />		
-
-	<b><?php echo CHtml::encode( "View Settlement Offer" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('settlementOffer/view', 'id' => $data->id )); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode( "View Settlement Offer Summary" ); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('settlementOffer/index', 'id' => $data->id )); ?>
-	<br />	
-	
-	
-	
-	
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_of_birth')); ?>:</b>
 	<?php echo CHtml::encode($data->date_of_birth); ?>
 	<br />
@@ -240,8 +179,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('pension')); ?>:</b>
 	<?php echo CHtml::encode($data->pension); ?>
 	<br />
-
-	*/ ?>
 
 </div>
 

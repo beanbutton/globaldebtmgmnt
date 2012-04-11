@@ -44,15 +44,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		array(
-			'name'=>'Fk_debtor_id',
+			'name'=>'file_number',
             'type'=>'raw',
             'value'=> 'CHtml::link(
-            	CHtml::encode($data->Fk_debtor_id), 
+            	CHtml::encode($data->file_number), 
             	array( "debtorOverview/view", 
             	"id" => $data->Fk_debtor_id)
 				)',
 		),
-		'file_number',
+		
+		
 		'offer_date',
 		'offer_amount',
 		'offer_amount_percentage',

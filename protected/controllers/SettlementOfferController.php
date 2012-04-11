@@ -52,35 +52,18 @@ class SettlementOfferController extends Controller {
 	 */
 	public function actionCreate() {
 		$model = new SettlementOffer;
-
-		if (isset($_GET['id'])) {
-			$model -> Fk_debtor_id = $_GET['id'];
-			$debtor = Debtor::model() -> findByPk($model -> Fk_debtor_id);
-			if ($debtor) {
-				$this -> debtor_name = $debtor -> firstname . " " . $debtor -> lastname;
-				$model->file_number= $debtor->file_number;
-				
-				$debtorProgramInfo = DebtorProgramInfo::model() -> findByAttributes(array("Fk_debtor_id" => $model -> Fk_debtor_id));
-				if($debtorProgramInfo)
-				{
-					//$model->offer_amount
-					//$model->offer_amount_percentage
-					//$model->client_saving_amonut
-					//$model->client_savings_percentage
-					//$model->client_reserves
-					//$model->service_fees
-					//$model->difference_amount
-				}
-				
-			}
-
-		}
-
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['SettlementOffer'])) {
 			$model -> attributes = $_POST['SettlementOffer'];
+			$debtor = Debtor::model() -> findByPk($model -> Fk_debtor_id);
+			if ($debtor) {
+				$this -> debtor_name = $debtor -> firstname . " " . $debtor -> lastname;
+				$model->file_number= $debtor->file_number;
+			}
+			
 			if ($model -> save())
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
