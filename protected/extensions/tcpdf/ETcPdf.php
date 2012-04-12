@@ -35,7 +35,7 @@
  * Include the the TCPDF class. IMPORTANT: Don't forget to customize its configuration
  * if needed.
  */
-require_once('tcpdf.php');
+require_once(dirname(__FILE__).'/tcpdf/tcpdf.php');
 
 /**
  * ETcPdf is a simple wrapper for the TCPDF library.

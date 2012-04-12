@@ -28,7 +28,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
 	<?php echo CHtml::encode($data->email); ?>
 	<br />
-
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('faxnumber')); ?>:</b>
 	<?php echo CHtml::encode($data->faxnumber); ?>
@@ -41,7 +40,5 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('updated_at')); ?>:</b>
 	<?php echo CHtml::encode($data->updated_at); ?>
 	<br />
-
-
-
+	
 </div>

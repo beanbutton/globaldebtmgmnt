@@ -36,3 +36,6 @@ $this->menu=array(
 		'updated_at',
 	),
 )); ?>
+
+	<b><?php echo CHtml::link('Generate PDF', array('settlementOffer/generatePdf', 
+			 'id'=>$model->Fk_debtor_id));?>

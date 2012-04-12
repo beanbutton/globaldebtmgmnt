@@ -8,8 +8,7 @@ class SettlementOfferController extends Controller {
 	public $layout = '//layouts/column2';
 	public $debtor_name;
 
-	public function getStatus()
-	{
+	public function getStatus() {
 		return GlobalDebtManagementUtils::getStatus();
 	}
 
@@ -17,7 +16,7 @@ class SettlementOfferController extends Controller {
 	 * @return array action filters
 	 */
 	public function filters() {
-		return array('accessControl',   // perform access control for CRUD operations
+		return array('accessControl',        // perform access control for CRUD operations
 		);
 	}
 
@@ -27,15 +26,98 @@ class SettlementOfferController extends Controller {
 	 * @return array access control rules
 	 */
 	public function accessRules() {
-		return array( 
+		return array(
 		//array('allow', // allow all users to perform 'index' and 'view' actions
-		//'actions' => array('index', 'view'), 'users' => array('*'), ), 
+		//'actions' => array('index', 'view'), 'users' => array('*'), ),
 		array('allow', // allow authenticated user to perform 'create' and 'update' actions
-		'actions' => array('index', 'view'), 'users' => array('@'), ), 
-		array('allow', // allow admin user to perform 'admin' and 'delete' actions
-		'actions' => array('admin', 'index', 'view','create', 'update','delete'), 'users' => array('admin'), ), 
-		array('deny', // deny all users
+		'actions' => array('index', 'view'), 'users' => array('@'), ), array('allow', // allow admin user to perform 'admin' and 'delete' actions
+		'actions' => array('admin', 'index', 'view', 'create', 'update', 'delete', 'generatePdf'), 'users' => array('admin'), ), array('deny', // deny all users
 		'users' => array('*'), ), );
+	}
+
+	public function loadDebtor($id) {
+		$debtor = Debtor::model() -> findByPk($id);
+		if ($debtor === null) {
+			throw new CHttpException(404, 'Debtor not found!');
+		}
+		return $debtor;
+	}
+
+	public function loadCreditor($id) {
+		$creditor = Creditor::model() -> findByAttributes(array("Fk_debtor_id" => $id));
+		if ($creditor === null) {
+			throw new CHttpException(404, 'Credtior not found!');
+		}
+		return $creditor;
+	}
+	
+	public function loadDebtorFinancialInfo($id) {
+		$info = DebtorFinancialInfo::model() -> findByAttributes(array("Fk_debtor_id" => $id));
+		if ($info === null) {
+			throw new CHttpException(404, 'Debtor Financial Info not found!');
+		}
+		return $info;
+	}
+
+	public function generateHtmlTemplate($debtor, $creditor, $financialInfo, $settlementOffer)
+	{
+		$content = "<ul><li>Client Name: $debtor->firstname $debtor->lastname</li>";
+		$content .= "<li><br/>Client ID: $debtor->file_number</li></ul>";
+		$content .= "<br/>Creditor: $creditor->name";
+		$content .= "<br/>Account Number: $financialInfo->account_number";
+		$content .= "<br/>Offer Date: $settlementOffer->offer_date";
+		$content .= "<br/>Valid Until: $settlementOffer->valid_date";
+		$content .= "<br/>Status: $settlementOffer->offer_status";
+		$content .= "<br/>Settlement Offer (\$): $settlementOffer->offer_amount";
+		$content .= "<br/>Settlement Offer (%): $settlementOffer->offer_amount_percentage";
+		$content .= "<br/>Client Savings (\$): $settlementOffer->client_saving_amonut";
+		$content .= "<br/>Client Savings (%): $settlementOffer->client_savings_percentage";
+		$content .= "<br/>Client Reserves (\$): $settlementOffer->client_reserves";
+		$content .= "<br/>Service Fee (\$): $settlementOffer->service_fees";
+		$content .= "<br/>Difference (\$): $settlementOffer->difference_amount";
+		return $content;
+	}
+
+	public function actionGeneratePdf($id) {
+		Yii::import('application.extensions.*');
+		require_once ('tcpdf/tcpdf.php');
+		require_once ('tcpdf/config/lang/eng.php');
+
+		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		// set document information
+		//$pdf -> SetCreator(PDF_CREATOR);
+		$pdf -> SetAuthor('Global Debt Management');
+		$pdf -> SetTitle('Settlement Offer');
+		$pdf -> SetSubject('');
+		$pdf -> SetKeywords('');
+		$pdf -> SetHeaderData('', '', 'Settlement Offer', '');
+
+		$pdf -> setHeaderFont(Array('helvetica', '', 8));
+		$pdf -> setFooterFont(Array('helvetica', '', 6));
+		$pdf -> SetMargins(15, 18, 15);
+		$pdf -> SetHeaderMargin(5);
+		$pdf -> SetFooterMargin(10);
+		$pdf -> SetAutoPageBreak(TRUE, 0);
+		$pdf -> SetFont('dejavusans', '', 7);
+		$pdf -> AddPage();
+
+		$model = $this -> loadModel($id);
+		$debtor = NULL;
+		$creditor = NULL;
+		$financialInfo= NULL;
+		if ($model != NULL) {
+			$debtor = $this -> loadDebtor($model -> Fk_debtor_id);
+			$creditor = $this->loadCreditor($model -> Fk_debtor_id);
+			$financialInfo= $this->loadDebtorFinancialInfo($model -> Fk_debtor_id);
+		}
+
+	
+		$content= $this->generateHtmlTemplate( $debtor, $creditor, $financialInfo, $model);
+		$doc = $content;
+		$pdf -> writeHTML($doc, true, false, true, false, '');
+
+		$pdf -> LastPage();
+		$pdf -> Output("example_002.pdf", "I");
 	}
 
 	/**
@@ -52,7 +134,7 @@ class SettlementOfferController extends Controller {
 	 */
 	public function actionCreate() {
 		$model = new SettlementOffer;
-		
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -61,9 +143,9 @@ class SettlementOfferController extends Controller {
 			$debtor = Debtor::model() -> findByPk($model -> Fk_debtor_id);
 			if ($debtor) {
 				$this -> debtor_name = $debtor -> firstname . " " . $debtor -> lastname;
-				$model->file_number= $debtor->file_number;
+				$model -> file_number = $debtor -> file_number;
 			}
-			
+
 			if ($model -> save())
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
