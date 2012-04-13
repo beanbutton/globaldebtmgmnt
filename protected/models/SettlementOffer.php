@@ -56,7 +56,7 @@ class SettlementOffer extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array( 
-        //array('created_at', 'required'), 
+        array('Fk_debtor_id', 'required'), 
         array('Fk_debtor_id, offer_status', 'numerical', 'integerOnly' => true), 
         array('offer_amount, offer_amount_percentage, client_saving_amonut, client_savings_percentage, client_reserves, service_fees, difference_amount', 'numerical'), 
         array('file_number, comments', 'length', 'max' => 255), 

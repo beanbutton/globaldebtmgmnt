@@ -47,7 +47,7 @@ class SettlementOfferSummary extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('created_at', 'required'),
+			array('Fk_debtor_id', 'required'),
 			array('Fk_debtor_id, months_to_repay', 'numerical', 'integerOnly'=>true),
 			array('total_debt, interest_rate, extra_interest_paid, ave_settlement, total_cost, savings_our_program', 'numerical'),
 			array('comments', 'length', 'max'=>255),

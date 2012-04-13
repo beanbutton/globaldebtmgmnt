@@ -50,7 +50,7 @@ class DebtorFinancialInfo extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-        //array('created_at', 'required'), 
+        array('Fk_debtor_id', 'required'), 
         array('Fk_debtor_id', 'numerical', 'integerOnly' => true), 
         array('name_financial_institution, branch_address, city, province, postal_code, phone_number, institution_numer, branch_number, account_number', 'length', 'max' => 255), array('updated_at', 'safe'),
         // The following rule is used by search().

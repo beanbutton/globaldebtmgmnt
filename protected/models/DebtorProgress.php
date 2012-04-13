@@ -59,7 +59,7 @@ class DebtorProgress extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array( 
-        //array('created_at', 'required'), 
+        array('Fk_debtor_id', 'required'), 
         array('Fk_debtor_id, status, days_behind', 'numerical', 'integerOnly' => true), 
         array('current_settlement_offer, current_settlement_perc, total_debt, settlement_amount, savings', 'numerical'), array('type_of_debt', 'length', 'max' => 255), array('offer_date, offer_valid_until_date, settlement_date, updated_at', 'safe'),
         // The following rule is used by search().

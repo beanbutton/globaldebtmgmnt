@@ -65,7 +65,7 @@ class DebtorBudgetInfo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('created_at, Fk_debtor_id', 'required'),
+			array('Fk_debtor_id', 'required'),
 			array('total_number_dependants, Fk_debtor_id', 'numerical', 'integerOnly'=>true),
 			array('monthly_income, monthly_auto_expenses, car_payment1, car_payment2, recreational_vehicle, monthly_auto_payments, monthly_utilites, monthly_grocery_expenses, monthly_insurance_payments, rrsp, gas_and_electricuty, telephone, water_trash_sewer, cable_and_internet_services, food_stamp_or_other, spouse_monthly_takehome_pay, estimated_home_value, remaining_mortgage_balance, household_expenses, total_debt_to_income_perc, total_expenses_to_income_variance, mortgage, rent, gross_monthly_income', 'numerical'),
 			array('reason_for_hardship', 'length', 'max'=>255),

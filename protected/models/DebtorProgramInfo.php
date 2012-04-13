@@ -69,7 +69,7 @@ class DebtorProgramInfo extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array( 
-        //array('created_at', 'required'), 
+        array('Fk_debtor_id', 'required'), 
         array('Fk_debtor_id, program_type', 'numerical', 'integerOnly' => true), 
         array('monthly_payment, total_debt, original_debt, monthly_income, saf_monthly_payment, nsf_amount, maintenance_fee_manual, maintenance_fee_automatic, admin_fee_automatic, admin_fee_percentage_automatic, admin_fee_manual, admin_fee_percentage_manual, service_fee_automatic, service_fee_percentage_automatic, service_fee_manual, service_fee_percentage_manual, savings_amount, savings_percentage', 'numerical'), array('type_of_debt', 'length', 'max' => 255), array('monthly_payment_due_date, enrollment_date, first_monthly_payment_date, next_payment_due_date, contract_due_date, updated_at', 'safe'),
         // The following rule is used by search().
