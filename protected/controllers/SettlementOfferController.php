@@ -61,20 +61,48 @@ class SettlementOfferController extends Controller {
 
 	public function generateHtmlTemplate($debtor, $creditor, $financialInfo, $settlementOffer)
 	{
-		$content = "<ul><li>Client Name: $debtor->firstname $debtor->lastname</li>";
-		$content .= "<li><br/>Client ID: $debtor->file_number</li></ul>";
-		$content .= "<br/>Creditor: $creditor->name";
-		$content .= "<br/>Account Number: $financialInfo->account_number";
-		$content .= "<br/>Offer Date: $settlementOffer->offer_date";
-		$content .= "<br/>Valid Until: $settlementOffer->valid_date";
-		$content .= "<br/>Status: $settlementOffer->offer_status";
-		$content .= "<br/>Settlement Offer (\$): $settlementOffer->offer_amount";
-		$content .= "<br/>Settlement Offer (%): $settlementOffer->offer_amount_percentage";
-		$content .= "<br/>Client Savings (\$): $settlementOffer->client_saving_amonut";
-		$content .= "<br/>Client Savings (%): $settlementOffer->client_savings_percentage";
-		$content .= "<br/>Client Reserves (\$): $settlementOffer->client_reserves";
-		$content .= "<br/>Service Fee (\$): $settlementOffer->service_fees";
-		$content .= "<br/>Difference (\$): $settlementOffer->difference_amount";
+		$content = "<table width='900' border='0' align='center'>";
+                $content = "<tr>
+                            <td height='43' colspan='2' align='center' bgcolor='#999999' ><h3><strong>Settlement Offers</strong></h3></td>
+                            </tr>
+                            <tr>
+                             <td width='450'>&nbsp;</td>
+                             <td width='450'>&nbsp;</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Client Name:</strong> $debtor->firstname $debtor->lastname</td>
+                            <td><strong>Client ID:</strong> $debtor->file_number</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Creditor Name:</strong> $creditor->name</td>
+                            <td><strong>Account Number:</strong> $financialInfo->account_number</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Offer Date:</strong> $settlementOffer->offer_date</td>
+                            <td><strong>Valid Until:</strong> $settlementOffer->valid_date</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Status:</strong> $settlementOffer->offer_status</td>
+                            <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Settlement Offer (\$):</strong> $settlementOffer->offer_amount</strong></td>
+                            <td><strong>Settlement Offer (%):</strong> $settlementOffer->offer_amount_percentage</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Client Savings (\$):</strong> $settlementOffer->client_saving_amonut</td>
+                            <td><strong>Client Savings (%):</strong> $settlementOffer->client_savings_percentage</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Client Reserves (\$):</strong> $settlementOffer->client_reserves</td>
+                            <td><strong>Service Fee (\$):</strong> $settlementOffer->service_fees</td>
+                            </tr>
+                            <tr>
+                            <td height='55'><strong>Difference (\$):</strong> $settlementOffer->difference_amount</td>
+                            <td>&nbsp;</td>
+                            </tr>";
+                $content = "</table>";
+             
 		return $content;
 	}
 

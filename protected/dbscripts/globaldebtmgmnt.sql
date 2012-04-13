@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2012 at 06:04 PM
+-- Generation Time: Apr 13, 2012 at 03:50 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -38,8 +38,7 @@ CREATE TABLE IF NOT EXISTS `sessiondb` (
 --
 
 INSERT INTO `sessiondb` (`id`, `expire`, `data`) VALUES
-('1jaftsekvcq34fn1kb1ftaii56', 1333468467, '899ca626168ff9e09829cdb758d6f433__returnUrl|s:33:"/globaldebtmgmnt/index.php?r=user";899ca626168ff9e09829cdb758d6f433__id|s:1:"4";899ca626168ff9e09829cdb758d6f433__name|s:5:"admin";899ca626168ff9e09829cdb758d6f433__states|a:0:{}'),
-('injh3lgbambs1ikjrm74ajteg5', 1333468768, '899ca626168ff9e09829cdb758d6f433__id|s:1:"4";899ca626168ff9e09829cdb758d6f433__name|s:5:"admin";899ca626168ff9e09829cdb758d6f433__states|a:0:{}');
+('tgaop17huvibsbf8sujj64udt0', 1334325333, '899ca626168ff9e09829cdb758d6f433__returnUrl|s:33:"/globaldebtmgmnt/index.php?r=user";');
 
 -- --------------------------------------------------------
 
@@ -103,15 +102,18 @@ CREATE TABLE IF NOT EXISTS `tbl_amortization` (
   `payment_period` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Fk_debtor_id` (`Fk_debtor_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `tbl_amortization`
 --
 
 INSERT INTO `tbl_amortization` (`id`, `Fk_debtor_id`, `payment_start_date`, `payment_end_date`, `total_monthly_cost`, `adminstration_fee`, `maintenance_fee`, `settlement_savings_fund`, `total_monthly_cost_total`, `total_adminstration_fee`, `total_maintenance_fee`, `total_settlement_savings_fund`, `created_at`, `updated_at`, `payment_period`) VALUES
-(1, 1, '2012-03-27 00:00:00', '2012-03-29 00:00:00', 271164, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-03-27 14:39:05', '0000-00-00 00:00:00', 0),
-(2, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 554.268, 139.33, 18.1129, 396.825, 13302.4, 3343.91, 434.709, 9523.8, '2012-03-27 18:03:20', '0000-00-00 00:00:00', 1);
+(1, 1, '2012-03-27 00:00:00', '2012-06-29 00:00:00', 271164, 4291.91, 557.949, 396.825, NULL, NULL, NULL, NULL, '2012-03-27 14:39:05', '2012-04-04 19:06:26', 1),
+(2, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 554.268, 139.33, 18.1129, 396.825, 13302.4, 3343.91, 434.709, 9523.8, '2012-03-27 18:03:20', '0000-00-00 00:00:00', 1),
+(4, 1, '2012-04-04 00:00:00', NULL, 271164, 4291.91, 557.949, 509.325, NULL, NULL, NULL, NULL, '2012-04-04 22:42:55', '0000-00-00 00:00:00', 5),
+(5, 1, '2012-04-04 00:00:00', '2012-09-04 00:00:00', 271164, 4291.91, 557.949, 509.325, NULL, NULL, NULL, NULL, '2012-04-04 22:52:25', '0000-00-00 00:00:00', 5),
+(6, 1, '2012-04-20 00:00:00', '2013-02-20 00:00:00', 17073.7, NULL, NULL, NULL, NULL, 4200, 1000, 4000, '2012-04-05 14:14:47', '0000-00-00 00:00:00', 10);
 
 -- --------------------------------------------------------
 
@@ -494,14 +496,15 @@ CREATE TABLE IF NOT EXISTS `tbl_file_upload_item` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `Fk_fileuploaditem_userid` (`Fk_user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `tbl_file_upload_item`
 --
 
 INSERT INTO `tbl_file_upload_item` (`id`, `Fk_user_id`, `description`, `filename`, `create_user_id`, `update_user_id`, `created_at`, `updated_at`) VALUES
-(1, 4, 'test', 'globaldebtmgmnt.sql', NULL, NULL, '2012-03-31 16:44:59', NULL);
+(1, 4, 'test', 'globaldebtmgmnt.sql', NULL, NULL, '2012-03-31 16:44:59', NULL),
+(2, 4, '', 'yii-blog-1.1.0.pdf', NULL, NULL, '2012-04-09 17:07:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -523,7 +526,14 @@ CREATE TABLE IF NOT EXISTS `tbl_negotiator` (
   PRIMARY KEY (`id`),
   KEY `Fk_debtor_id` (`Fk_debtor_id`),
   KEY `Fk_negotiator_userid` (`Fk_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_negotiator`
+--
+
+INSERT INTO `tbl_negotiator` (`Fk_user_id`, `id`, `Fk_debtor_id`, `name`, `address`, `telephone`, `email`, `faxnumber`, `created_at`, `updated_at`) VALUES
+(4, 3, 1, 'me', 'me', 'mem', 'emme', 'emem', '2012-04-11 16:22:48', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -551,7 +561,16 @@ CREATE TABLE IF NOT EXISTS `tbl_settlement_offer` (
   PRIMARY KEY (`id`),
   KEY `Fk_debtor_id` (`Fk_debtor_id`),
   KEY `file_number` (`file_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_settlement_offer`
+--
+
+INSERT INTO `tbl_settlement_offer` (`id`, `Fk_debtor_id`, `file_number`, `offer_date`, `offer_amount`, `offer_amount_percentage`, `client_saving_amonut`, `client_savings_percentage`, `client_reserves`, `service_fees`, `difference_amount`, `offer_status`, `valid_date`, `comments`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, '2012-04-11 00:00:00', 5000, 15, 2000, 15, 2000, 4000, 1000, 1, '2012-09-11 00:00:00', '', '2012-04-11 16:08:04', '0000-00-00 00:00:00'),
+(2, 1, '1234', '2012-04-11 00:00:00', 5000, 15, 2000, 15, 2000, 4000, 1000, 1, '2012-09-11 00:00:00', '', '2012-04-11 16:09:57', '0000-00-00 00:00:00'),
+(3, 1, '1234', '2012-04-11 00:00:00', 5000, 15, 2000, 15, 2000, 4000, 1000, 1, '2012-09-11 00:00:00', '', '2012-04-11 16:11:35', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -586,7 +605,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `salt` varchar(255) DEFAULT NULL,
+  `role` int(255) DEFAULT NULL,
   `remember_me` int(11) DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -594,15 +613,16 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   UNIQUE KEY `username_2` (`username`),
   KEY `username` (`username`),
   KEY `password` (`password`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id`, `username`, `password`, `salt`, `remember_me`, `created_at`, `updated_at`) VALUES
+INSERT INTO `tbl_user` (`id`, `username`, `password`, `role`, `remember_me`, `created_at`, `updated_at`) VALUES
 (2, 'wagied', 'a6c2b22acb8c4414cc97256c3286abb69b27340e', NULL, 0, '2012-03-27 16:17:47', '0000-00-00 00:00:00'),
-(4, 'admin', '315f166c5aca63a157f7d41007675cb44a948b33', NULL, 0, '2012-03-29 17:33:50', '2012-03-29 17:34:02');
+(4, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 0, '2012-03-29 17:33:50', '2012-04-10 18:10:36'),
+(5, 'user1', 'b3daa77b4c04a9551b8781d03191fe098f325e67', 2, 0, '2012-04-03 12:32:24', '0000-00-00 00:00:00');
 
 --
 -- Constraints for dumped tables
