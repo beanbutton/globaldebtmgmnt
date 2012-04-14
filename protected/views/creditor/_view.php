@@ -16,10 +16,17 @@
 	<?php echo CHtml::encode($data->badge_number); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('file_number')); ?>:</b>
+	<?php echo CHtml::encode($data->file_number); ?>
+	<br />
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('company_name')); ?>:</b>
+	<?php echo CHtml::encode($data->company_name); ?>
+	<br />
 	<b><?php echo CHtml::encode($data->getAttributeLabel('address')); ?>:</b>
 	<?php echo CHtml::encode($data->address); ?>
 	<br />

@@ -165,6 +165,7 @@
 		<?php echo $form->error($model,'maintenance_fee_manual'); ?>
 	</div>
 
+<!--
 	<div class="col">
 		<?php echo $form->labelEx($model,'maintenance_fee_automatic'); ?>
 		<?php echo $form->textField($model,'maintenance_fee_automatic'); ?>
@@ -176,6 +177,13 @@
 		<?php echo $form->textField($model,'admin_fee_automatic'); ?>
 		<?php echo $form->error($model,'admin_fee_automatic'); ?>
 	</div>
+	
+	  <div class="col">
+		<?php echo $form->labelEx($model,'service_fee_automatic'); ?>
+		<?php echo $form->textField($model,'service_fee_automatic'); ?>
+		<?php echo $form->error($model,'service_fee_automatic'); ?>
+	</div>
+-->
 
 	<div class="col">
 		<?php echo $form->labelEx($model,'admin_fee_percentage_automatic'); ?>
@@ -183,10 +191,10 @@
 		<?php echo $form->error($model,'admin_fee_percentage_automatic'); ?>
 	</div>
         
-        <div class="col">
-		<?php echo $form->labelEx($model,'service_fee_automatic'); ?>
-		<?php echo $form->textField($model,'service_fee_automatic'); ?>
-		<?php echo $form->error($model,'service_fee_automatic'); ?>
+ 	<div class="col">
+		<?php echo $form->labelEx($model,'maintenance_fee_percentage_automatic'); ?>
+		<?php echo $form->textField($model,'maintenance_fee_percentage_automatic'); ?>
+		<?php echo $form->error($model,'maintenance_fee_percentage_automatic'); ?>
 	</div>
 
 	<div class="col">
@@ -194,7 +202,7 @@
 		<?php echo $form->textField($model,'service_fee_percentage_automatic'); ?>
 		<?php echo $form->error($model,'service_fee_percentage_automatic'); ?>
 	</div>
-    
+   
         	<div class="col">
 		<?php echo $form->labelEx($model,'admin_fee_manual'); ?>
 		<?php echo $form->textField($model,'admin_fee_manual'); ?>

@@ -25,6 +25,18 @@
 		<?php echo $form -> textField($model, 'name', array('size' => 60, 'maxlength' => 255));?>
 		<?php echo $form -> error($model, 'name');?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'company_name'); ?>
+		<?php echo $form->textField($model,'company_name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'company_name'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'file_number'); ?>
+		<?php echo $form->textField($model,'file_number',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'file_number'); ?>
+	</div>
 	<div class="row">
 		<?php echo $form -> labelEx($model, 'address');?>
 		<?php echo $form -> textField($model, 'address', array('size' => 60, 'maxlength' => 255));?>

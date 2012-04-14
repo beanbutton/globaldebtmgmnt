@@ -61,8 +61,10 @@ class SettlementOfferController extends Controller {
 
 	public function generateHtmlTemplate($debtor, $creditor, $financialInfo, $settlementOffer)
 	{
-		$content = "<table width='900' border='0' align='center'>";
-                $content = "<tr>
+		$table_header = "<table width='900' border='0' align='center' cellspacing='0'>";
+		$table_footer= "</table>";
+		$content = '';
+                $content .= "<tr>
                             <td height='43' colspan='2' align='center' bgcolor='#999999' ><h3><strong>Settlement Offers</strong></h3></td>
                             </tr>
                             <tr>
@@ -103,8 +105,10 @@ class SettlementOfferController extends Controller {
                             </tr>";
                 $content = "</table>";
              
-		return $content;
+		return array($table_header,$content,$table_footer);
 	}
+	
+	
 
 	public function actionGeneratePdf($id) {
 		Yii::import('application.extensions.*');
@@ -140,9 +144,62 @@ class SettlementOfferController extends Controller {
 		}
 
 	
-		$content= $this->generateHtmlTemplate( $debtor, $creditor, $financialInfo, $model);
-		$doc = $content;
-		$pdf -> writeHTML($doc, true, false, true, false, '');
+		$table= $this->generateHtmlTemplate( $debtor, $creditor, $financialInfo, $model);
+		$tbl = <<<EOF
+              <div>
+                <table border="0" >
+                    <thead>
+                    	<tr>
+                            <td height='43' colspan='2' align='center' bgcolor='#999999' ><h3><strong>Settlement Offers</strong></h3></td>
+                        </tr>                            
+                    </thead>
+                    <tbody>
+							<tr>
+	                            <td height='55'><strong>Client Name:</strong> $debtor->firstname $debtor->lastname</td>
+                            </tr>
+                     		<tr>
+                     		    <td><strong>Client ID:</strong> $debtor->file_number</td>
+                     		</tr>
+                     		<tr>
+                     		<td height='55'><strong>Creditor Name:</strong> $creditor->name</td>
+                     		</tr>
+                     		<tr>
+                            	<td><strong>Account Number:</strong> $financialInfo->account_number</td>
+                     		</tr>
+                     		<tr>
+                     		 	<td height='55'><strong>Offer Date:</strong> $model->offer_date</td>
+                     		</tr>
+                     		<tr>
+                            	<td><strong>Valid Until:</strong> $model->valid_date</td>
+                            </tr>
+                            <tr>
+	                            <td height='55'><strong>Status:</strong> $model->offer_status</td>
+                            </tr>
+                            <tr>
+	                            <td><strong>Settlement Amount (\$):</strong> $model->offer_amount</td>					
+                            </tr>
+                            <tr>
+	                            <td><strong>Settlement Offer (%):</strong> $model->offer_amount_percentage</td>
+                            </tr>
+                            <tr>
+ 								<td height='55'><strong>Client Savings (\$):</strong> $model->client_saving_amonut</td>                          
+                            </tr>
+                            <tr>
+    	                        <td><strong>Client Savings (%):</strong> $model->client_savings_percentage</td>
+                            </tr>
+                            <tr>
+                             	<td height='55'><strong>Client Reserves (\$):</strong> $settlementOffer->client_reserves</td>                           
+                            </tr>
+                            <tr>
+                                <td><strong>Service Fee (\$):</strong> $settlementOffer->service_fees</td>
+                            </tr>
+							
+                    </tbody>
+                </table>
+              </div>
+         </div>
+EOF;
+		$pdf -> writeHTML($tbl, true, false, true, false, '');
 
 		$pdf -> LastPage();
 		$pdf -> Output("example_002.pdf", "I");

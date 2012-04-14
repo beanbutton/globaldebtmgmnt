@@ -59,10 +59,10 @@ class DebtorProgramInfoController extends Controller {
 			}
 		}
 		
-		//AUTOMATIC
-		$model->maintenance_fee_automatic= DebtCalculations::$MAINTENANCE_FEE_PERCENTAGE;
+		// Set automatic values
+		$model->maintenance_fee_percentage_automatic= DebtCalculations::$MAINTENANCE_FEE_PERCENTAGE;
 		$model->admin_fee_percentage_automatic= DebtCalculations::$ADMINISTRATION_FEE_PERCENTAGE;
-		$model->service_fee_automatic= DebtCalculations::$SETTLEMENT_OFFER_PERCENTAGE;
+		$model->service_fee_percentage_automatic= DebtCalculations::$SETTLEMENT_OFFER_PERCENTAGE;
 		
 		
 		//
@@ -72,6 +72,13 @@ class DebtorProgramInfoController extends Controller {
 
 		if (isset($_POST['DebtorProgramInfo'])) {
 			$model -> attributes = $_POST['DebtorProgramInfo'];
+			
+			// Check for automatic
+			if( isset( $model-> maintenance_fee_manual))
+			{
+				
+			}
+			
 			if ($model -> save())
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
