@@ -72,6 +72,15 @@ class Debtor extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	
+	/**
+	 * Retrieves the debtors full name
+	 */
+	public function getFullname()
+	{
+		return $this->firstname." ".$this->lastname;
+	}
 
 	/**
 	 * @return string the associated database table name

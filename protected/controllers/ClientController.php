@@ -35,7 +35,7 @@ class ClientController extends Controller
 			//	'users'=>array('@'),
 			//),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','create','update','delete'),
+				'actions'=>array('admin','create','index', 'view', 'update','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
