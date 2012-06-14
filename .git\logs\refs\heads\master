@@ -1,0 +1,32 @@
+0000000000000000000000000000000000000000 795e3daabe93e5a8e7ad81a9a520d6d7562a6566 Wagied Davids <w2davids@gmail.com> 1333468937 -0400	commit (initial): Updated
+795e3daabe93e5a8e7ad81a9a520d6d7562a6566 dc2179417458ea1968978d4d823d4786c6390d3b Wagied Davids <w2davids@gmail.com> 1333469140 -0400	commit: Updated dbscripts with lastest sql
+dc2179417458ea1968978d4d823d4786c6390d3b 5485668401e6ce1ce7b812f9ede63ffe6477d005 Wagied Davids <w2davids@gmail.com> 1333494049 -0400	commit: Update access to budgetinfo
+5485668401e6ce1ce7b812f9ede63ffe6477d005 65de8466ec9b24d1486aeebb596b47432a330bc7 Wagied Davids <w2davids@gmail.com> 1333573995 -0400	commit: Amortizaton report - monthly
+65de8466ec9b24d1486aeebb596b47432a330bc7 51cf04d42aa3a569db1e3aae6815da1f3d64d254 Wagied Davids <w2davids@gmail.com> 1333594846 -0400	commit: amortization - 90%completed
+51cf04d42aa3a569db1e3aae6815da1f3d64d254 dbd32326d607a5ed225c79dc4a811cfcb5450584 Wagied Davids <w2davids@gmail.com> 1333639066 -0400	commit: Updated months - controller; Negotiator
+dbd32326d607a5ed225c79dc4a811cfcb5450584 87203f4b2fa28121e5897a8893357ddcd12db60d Wagied Davids <w2davids@gmail.com> 1333650400 -0400	commit: Updated
+87203f4b2fa28121e5897a8893357ddcd12db60d c5270446650f8f5efada16a806d7a5c006264516 Wagied Davids <w2davids@gmail.com> 1333668263 -0400	commit: Added GlobalDebtManagementUtils- months, status
+c5270446650f8f5efada16a806d7a5c006264516 6cac0120ac8dbad75b5cfe6699e9e811d31efd6a Wagied Davids <w2davids@gmail.com> 1333668513 -0400	commit: Fixed create_time instead of created_at
+6cac0120ac8dbad75b5cfe6699e9e811d31efd6a d4b1a78616bc357a127744642bc04daa01cd2896 Wagied Davids <w2davids@gmail.com> 1334001863 -0400	commit: Updated
+d4b1a78616bc357a127744642bc04daa01cd2896 5177784b4a78d9d03c613566ddd3ce2f8ac7f35f Wagied Davids <w2davids@gmail.com> 1334002884 -0400	commit: Updated actions- user;
+5177784b4a78d9d03c613566ddd3ce2f8ac7f35f 91824056ca9fc61eb86406ec70351c82bb0b6909 Wagied Davids <w2davids@gmail.com> 1334009811 -0400	commit: File download link - need to point to action
+91824056ca9fc61eb86406ec70351c82bb0b6909 07c3f14eab6e80a7e2b64137eeb26ff32f8792c6 Wagied Davids <w2davids@gmail.com> 1334015978 -0400	commit: Fixed download action
+07c3f14eab6e80a7e2b64137eeb26ff32f8792c6 86df8221bab124b55594f80a7548a700feb79dbb Wagied Davids <w2davids@gmail.com> 1334023662 -0400	commit: Minor cleanup
+86df8221bab124b55594f80a7548a700feb79dbb 1d36af46b394b9d4a54574c544982bfe7c2e03b7 Wagied Davids <w2davids@gmail.com> 1334096043 -0400	commit: Updated rules
+1d36af46b394b9d4a54574c544982bfe7c2e03b7 03e2b19fe69fda02cb840e7a0005cbf235b81001 Wagied Davids <w2davids@gmail.com> 1334096300 -0400	commit: Updated user - linked
+03e2b19fe69fda02cb840e7a0005cbf235b81001 d4e09f43e3d8aeb72ccac49773a261cf78d937b0 Wagied Davids <w2davids@gmail.com> 1334096639 -0400	commit: Added linked views
+d4e09f43e3d8aeb72ccac49773a261cf78d937b0 fccc9e425d94acc56cb943f6dae517bd06146df9 Wagied Davids <w2davids@gmail.com> 1334097290 -0400	commit: Updated to debtorOverview
+fccc9e425d94acc56cb943f6dae517bd06146df9 5d01d0e2c8cc0faa204a4066a1a1306b24e50bd6 Wagied Davids <w2davids@gmail.com> 1334097672 -0400	commit: debtorOverview
+5d01d0e2c8cc0faa204a4066a1a1306b24e50bd6 14aa3647a7bc3dae3f4b4597d38c13541782e9be Wagied Davids <w2davids@gmail.com> 1334111813 -0400	commit: FPDF17
+14aa3647a7bc3dae3f4b4597d38c13541782e9be c98aa71a1daaeb83a8a882d317ca06682a37e12c Wagied Davids <w2davids@gmail.com> 1334158836 -0400	commit: getStatus included
+c98aa71a1daaeb83a8a882d317ca06682a37e12c 8cf3f4c23611e058df90f25becf0b925df070f0c Wagied Davids <w2davids@gmail.com> 1334161110 -0400	commit: Updated
+8cf3f4c23611e058df90f25becf0b925df070f0c e459d99246ba8ce445fd208be9477615743a9307 Wagied Davids <w2davids@gmail.com> 1334161167 -0400	commit: Minor edit
+e459d99246ba8ce445fd208be9477615743a9307 aa8e756d3c1ca2537aeb34be5b171a626ca133f9 Wagied Davids <w2davids@gmail.com> 1334161399 -0400	commit: Updated Negotiator controller
+aa8e756d3c1ca2537aeb34be5b171a626ca133f9 39af62a7156c5bcaa337902870b236fd3ee84006 Wagied Davids <w2davids@gmail.com> 1334161841 -0400	commit: Updated link to debtorOverbview from negotiator
+39af62a7156c5bcaa337902870b236fd3ee84006 0806a1b9e3e7c7b946189439e1a539911ccbd651 Wagied Davids <w2davids@gmail.com> 1334268317 -0400	commit: Need to update template at /protected/controllers/SettlementOfferController.php
+0806a1b9e3e7c7b946189439e1a539911ccbd651 db8345f206fff394900bbe9d03dfd341ed2ee75c Wagied Davids <w2davids@gmail.com> 1334325137 -0400	commit: Update db script
+db8345f206fff394900bbe9d03dfd341ed2ee75c cdf8447e3804b0078446d2a865e81a9f2ccc6efa Wagied Davids <w2davids@gmail.com> 1334336229 -0400	commit: Updated Fk_debtor_id required
+cdf8447e3804b0078446d2a865e81a9f2ccc6efa 6eb21585d81cc2777497ce1c887662f547dab592 Wagied Davids <w2davids@gmail.com> 1334369438 -0400	commit: creditor updated
+6eb21585d81cc2777497ce1c887662f547dab592 f1871f514d4c966994a471b58ef54ef99cd75533 Wagied Davids <Wagied Davids> 1339709755 -0400	pull: Fast-forward
+f1871f514d4c966994a471b58ef54ef99cd75533 88b470e088c24a42665004b2d04436a73ce2f407 Wagied Davids <Wagied Davids> 1339710060 -0400	pull: Fast-forward
+88b470e088c24a42665004b2d04436a73ce2f407 7d3838134d4c8fb0a2a925c7a7d1ebc77c82ad44 Wagied Davids <Wagied Davids> 1339714617 -0400	commit: Updated Yuki-
