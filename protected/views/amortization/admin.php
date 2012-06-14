@@ -88,19 +88,4 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 
 
-<!--
-<?php
-$this->widget('ext.htmltableui.htmlTableUi',array(
-    'collapsed'=>false,
-    'arProvider'=> $arProvider,
-    'ajaxUrl' => 'amortization/_form',
-    'columns' => array(),
-    'exportUrl'=>'site/exportTable',
-    'extra'=>'Additional Information',
-    'editable'=>true,
-    'enableSort'=>true,
-));
-?>
--->
-
 

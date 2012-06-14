@@ -17,16 +17,24 @@ class DebtorProgramInfoController extends Controller {
 		);
 	}
 
+
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
 	public function accessRules() {
-		return array( array('allow', // allow all users to perform 'index' and 'view' actions
-		'actions' => array('index', 'view'), 'users' => array('*'), ), array('allow', // allow authenticated user to perform 'create' and 'update' actions
-		'actions' => array('create', 'update','index', 'view', 'delete'), 'users' => array('@'), ), array('allow', // allow admin user to perform 'admin' and 'delete' actions
-		'actions' => array('admin', 'delete'), 'users' => array('admin'), ), array('deny', // deny all users
+		return array( 
+		//array('allow', // allow all users to perform 'index' and 'view' actions
+		//	'actions' => array('index', 'view'), 'users' => array('*'), ), 
+		//array('allow', // allow authenticated user to perform 'create' and 'update' actions
+		//	'actions' => array('create', 'update'), 'users' => array('@'), ), 
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','index','view', 'list','create','update','delete', 'updatePopup'),
+				'users'=>array('admin'),
+			),
+		array('deny', // deny all users
 		'users' => array('*'), ), );
 	}
 
@@ -106,6 +114,19 @@ class DebtorProgramInfoController extends Controller {
 		$this -> render('update', array('model' => $model, ));
 	}
 
+
+	public function actionUpdatePopup($id)
+	{
+		$model= $this->loadModel($id);
+		if (isset($_POST['DebtorProgramInfo'])) {
+			$model -> attributes = $_POST['DebtorProgramInfo'];
+			if ($model -> save())
+				$this -> redirect(array('view', 'id' => $model -> id));
+		}
+
+		$this -> render('update_popup', array('model' => $model));
+	}
+	
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.

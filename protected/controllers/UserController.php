@@ -35,7 +35,7 @@ class UserController extends Controller
 			//	'users'=>array('@'),
 			//),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','index','view', 'create','update','delete'),
+				'actions'=>array('admin','index','view', 'create','update','delete', 'updatePopup'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -120,6 +120,19 @@ class UserController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+
+
+	public function actionUpdatePopup($id)
+	{
+		$model= $this->loadModel($id);
+		if (isset($_POST['User'])) {
+			$model -> attributes = $_POST['User'];
+			if ($model -> save())
+				$this -> redirect(array('view', 'id' => $model -> id));
+		}
+
+		$this -> render('update_popup', array('model' => $model));
 	}
 
 	/**

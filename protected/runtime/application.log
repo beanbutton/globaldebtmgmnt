@@ -4194,3 +4194,71 @@ Stack trace:
 #23 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
 #24 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
 #25 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=debtorOverview/view&id=1
+2012/06/14 22:56:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "updatePopup".' in C:\xampp\htdocs\YiiRoot\framework\web\CController.php:477
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(262): CController->missingAction('updatePopup')
+#1 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('updatePopup')
+#2 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('creditor/update...')
+#3 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#5 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=creditor/updatePopup&id=1
+2012/06/14 22:56:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "updatePopup".' in C:\xampp\htdocs\YiiRoot\framework\web\CController.php:477
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(262): CController->missingAction('updatePopup')
+#1 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('updatePopup')
+#2 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('creditor/update...')
+#3 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#5 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=creditor/updatePopup&id=1
+2012/06/14 22:57:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "updatePopup".' in C:\xampp\htdocs\YiiRoot\framework\web\CController.php:477
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(262): CController->missingAction('updatePopup')
+#1 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('updatePopup')
+#2 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('creditor/update...')
+#3 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#5 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=creditor/updatePopup&id=1
+2012/06/14 23:01:54 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\YiiRoot\framework\web\auth\CAccessControlFilter.php:158
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\YiiRoot\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(283): CFilterChain->run()
+#6 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('updatePopup')
+#8 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('user/updatePopu...')
+#9 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=user/updatePopup&id=2
+2012/06/14 23:08:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "updatePopup".' in C:\xampp\htdocs\YiiRoot\framework\web\CController.php:477
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(262): CController->missingAction('updatePopup')
+#1 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('updatePopup')
+#2 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('debtorProgramIn...')
+#3 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#5 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=debtorProgramInfo/updatePopup&id=2
+2012/06/14 23:10:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "updatePopup".' in C:\xampp\htdocs\YiiRoot\framework\web\CController.php:477
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(262): CController->missingAction('updatePopup')
+#1 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('updatePopup')
+#2 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('debtorProgramIn...')
+#3 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#5 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=debtorProgramInfo/updatePopup&id=2
+2012/06/14 23:14:31 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\YiiRoot\framework\web\auth\CAccessControlFilter.php:158
+Stack trace:
+#0 C:\xampp\htdocs\YiiRoot\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\YiiRoot\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\YiiRoot\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(283): CFilterChain->run()
+#6 C:\xampp\htdocs\YiiRoot\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(277): CController->run('updatePopup')
+#8 C:\xampp\htdocs\YiiRoot\framework\web\CWebApplication.php(136): CWebApplication->runController('debtorProgress/...')
+#9 C:\xampp\htdocs\YiiRoot\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\globaldebtmgmnt\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/globaldebtmgmnt/index.php?r=debtorProgress/updatePopup&id=1

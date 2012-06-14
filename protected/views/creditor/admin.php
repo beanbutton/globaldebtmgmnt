@@ -40,6 +40,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'creditor-grid',
 	'dataProvider'=>$model->search(),
+	
+	'htmlOptions'=>array('style' =>'cursor: pointer;'),
+     
+	 'selectionChanged' => "function(id){location.href='"
+	 . Yii::app()->urlManager->createUrl('creditor/updatePopup', array('id'=>'')) 
+     . "' + $.fn.yiiGridView.getSelection(id);}",
+     
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
