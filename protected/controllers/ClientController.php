@@ -35,7 +35,7 @@ class ClientController extends Controller
 			//	'users'=>array('@'),
 			//),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','create','index', 'view', 'update','delete'),
+				'actions'=>array('admin','index','view', 'create','update','delete', 'updatePopup'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -101,6 +101,18 @@ class ClientController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionUpdatePopup($id)
+	{
+		$model= $this->loadModel($id);
+		if (isset($_POST['Client'])) {
+			$model -> attributes = $_POST['Client'];
+			if ($model -> save())
+				$this -> redirect(array('view', 'id' => $model -> id));
+		}
+
+		$this -> render('update_popup', array('model' => $model));
 	}
 
 	/**

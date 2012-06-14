@@ -12,6 +12,7 @@
 		array('label' => 'Admin', 'url' => array('/user/admin'), 'items' => array(
 		
 		array('label' => 'Manage Users', 'url' => array('/user/admin')), 
+		array('label' => 'Manage Clients', 'url' => array('/client/admin')), 
 		array('label' => 'Manage Debtors', 'url' => array('/debtor/admin')),
 		
 		array('label' => 'Manage Debtors Budget Info', 'url' => array('/debtorBudgetInfo/admin')), 
