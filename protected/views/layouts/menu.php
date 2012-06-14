@@ -1,17 +1,15 @@
 <?php $this -> widget('application.extensions.mbmenu.MbMenu', 
 		array('items' => array( array('label' => 'Home', 'url' => array('/site/index')), 
-		array('label' => 'Clients', 'url' => array('/client/index')), 
+		array('label' => 'Clients', 'url' => array('/client/admin')), 
 		array('label' => 'Creditors', 'url' => array('/creditor/admin')), 
 		array('label' => 'Debtors', 'items' => 
-		array( 
-			array('label' => 'Debtor Progress', 'url' => 
-		array('/debtorProgress/index')), 
-		array('label' => 'Budget Info', 'url' => array('/debtorBudgetInfo/index')), 
-		array('label' => 'Program Info', 'url' => array('/debtorProgramInfo/index')),
-		 array('label' => 'Amortization', 'url' => array('/amortization/index')), 
-		 array('label' => 'Settlement Offer', 'url' => array('/settlementOffer/index')), ), 
+		array(  array('label' => 'Debtor Progress', 'url' =>  array('/debtorProgress/admin')), 
+		array('label' => 'Budget Info', 'url' => array('/debtorBudgetInfo/admin')), 
+		array('label' => 'Program Info', 'url' => array('/debtorProgramInfo/admin')),
+		 array('label' => 'Amortization', 'url' => array('/amortization/admin')), 
+		 array('label' => 'Settlement Offer', 'url' => array('/settlementOffer/admin')), ), 
 			 ), 
-		array('label' => 'Admin', 'url' => array('/user/view'), 'items' => array(
+		array('label' => 'Admin', 'url' => array('/user/admin'), 'items' => array(
 		
 		array('label' => 'Manage Users', 'url' => array('/user/admin')), 
 		array('label' => 'Manage Debtors', 'url' => array('/debtor/admin')),
