@@ -7,12 +7,11 @@ class AmortizationController extends Controller {
 	 */
 	public $layout = '//layouts/column2';
 
-
 	/**
 	 * @return array action filters
 	 */
 	public function filters() {
-		return array('accessControl',         // perform access control for CRUD operations
+		return array('accessControl',          // perform access control for CRUD operations
 		);
 	}
 
@@ -25,55 +24,46 @@ class AmortizationController extends Controller {
 		return array( array('allow', // allow all users to perform 'index' and 'view' actions
 		'actions' => array('index', 'view'), 'users' => array('*'), ), array('allow', // allow authenticated user to perform 'create' and 'update' actions
 		'actions' => array('create', 'update'), 'users' => array('@'), ), array('allow', // allow admin user to perform 'admin' and 'delete' actions
-		'actions' => array('admin', 'index', 'view', 'list', 'create', 'update', 'delete'), 'users' => array('admin'), ), array('deny', // deny all users
+		'actions' => array('admin', 'index', 'view', 'list', 'create', 'update', 'updatePopup','delete'), 'users' => array('admin'), ), array('deny', // deny all users
 		'users' => array('*'), ), );
 	}
 
 	public function getColumnHeaders() {
-		return array('id', 
-		'Payment Date', 
-		'Total Monthly Cost', 
-		'Administration Fee', 
-		'Maintenance Fee', 
-		'Settlement Saving Fund');
+		return array('id', 'Payment Date', 'Total Monthly Cost', 'Administration Fee', 'Maintenance Fee', 'Settlement Saving Fund');
 	}
-	
-	
-	public function getMonths()
-	{
+
+	public function getMonths() {
 		return GlobalDebtManagementUtils::getMonths();
 	}
 
 	public function getAmortizationPlan($id) {
-		$model= $this->loadModel($id);
-		$debtor = $this->loadDebtor($model->Fk_debtor_id);
-		
-		$payment_start_date= $model->payment_start_date;
-		$payment_period= $model->payment_period;
-		
-		$start_date= date( "Y-m-d",strtotime( $payment_start_date ));
-		$end_date= date( "Y-m-d",strtotime($start_date ."+".$payment_period."month"));
-		$period= $this->getDateRange( $start_date, $end_date);
-		
-		
-		$monthly_cost= $model->total_monthly_cost;
-		$admin_fee= $model->adminstration_fee;
-		$maintenance_fee= $model-> maintenance_fee;
-		$savings_fee= $model->settlement_savings_fund;
-		
-		$counter= 1;
-		$data= array();
-		foreach( $period as $date)
-		{
-			$data[]= array( $counter++, $date, $monthly_cost, $admin_fee, $maintenance_fee, $savings_fee );
+		$model = $this -> loadModel($id);
+		$debtor = $this -> loadDebtor($model -> Fk_debtor_id);
+
+		$payment_start_date = $model -> payment_start_date;
+		$payment_period = $model -> payment_period;
+
+		$start_date = date("Y-m-d", strtotime($payment_start_date));
+		$end_date = date("Y-m-d", strtotime($start_date . "+" . $payment_period . "month"));
+		$period = $this -> getDateRange($start_date, $end_date);
+
+		$monthly_cost = $model -> total_monthly_cost;
+		$admin_fee = $model -> adminstration_fee;
+		$maintenance_fee = $model -> maintenance_fee;
+		$savings_fee = $model -> settlement_savings_fund;
+
+		$counter = 1;
+		$data = array();
+		foreach ($period as $date) {
+			$data[] = array($counter++, $date, $monthly_cost, $admin_fee, $maintenance_fee, $savings_fee);
 		}
 		return $data;
 	}
 
 	public function getDateRange($startDateStr, $endDateStr) {
-		$startDate= new DateTime( $startDateStr);
-		$endDate= new DateTime( $endDateStr);
-		
+		$startDate = new DateTime($startDateStr);
+		$endDate = new DateTime($endDateStr);
+
 		$interval = DateInterval::createFromDateString('last thursday of next month');
 		$period = new DatePeriod($startDate, $interval, $endDate, DatePeriod::EXCLUDE_START_DATE);
 		$dataRange = array();
@@ -88,12 +78,10 @@ class AmortizationController extends Controller {
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id) {
-		$model= $this -> loadModel($id);
+		$model = $this -> loadModel($id);
 		$columnsArray = $this -> getColumnHeaders();
 
-		$this -> render('view', 
-		array('model' => $model, 
-		'columnsArray' => $columnsArray, ));
+		$this -> render('view', array('model' => $model, 'columnsArray' => $columnsArray, ));
 	}
 
 	/**
@@ -104,8 +92,8 @@ class AmortizationController extends Controller {
 		$model = new Amortization;
 		if (isset($_GET['id'])) {
 			$model -> Fk_debtor_id = $_GET['id'];
-			$debtor = $this->loadDebtor($model -> Fk_debtor_id);
-			
+			$debtor = $this -> loadDebtor($model -> Fk_debtor_id);
+
 			if ($debtor) {
 				$this -> debtor_name = $debtor -> firstname . " " . $debtor -> lastname;
 			}
@@ -148,9 +136,9 @@ class AmortizationController extends Controller {
 
 		if (isset($_POST['Amortization'])) {
 			$model -> attributes = $_POST['Amortization'];
-			$start_date= date( "Y-m-d",strtotime( $model->payment_start_date ));
-			$end_date= date( "Y-m-d",strtotime($start_date ."+".$model->payment_period."month"));
-			$model->payment_end_date= $end_date;
+			$start_date = date("Y-m-d", strtotime($model -> payment_start_date));
+			$end_date = date("Y-m-d", strtotime($start_date . "+" . $model -> payment_period . "month"));
+			$model -> payment_end_date = $end_date;
 			if ($model -> save())
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
@@ -178,6 +166,18 @@ class AmortizationController extends Controller {
 		$this -> render('update', array('model' => $model));
 	}
 
+	public function actionUpdatePopup($id)
+	{
+		$model= $this->loadModel($id);
+		if (isset($_POST['Amortization'])) {
+			$model -> attributes = $_POST['Amortization'];
+			if ($model -> save())
+				$this -> redirect(array('view', 'id' => $model -> id));
+		}
+
+		$this -> render('update_popup', array('model' => $model));
+	}
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -200,8 +200,7 @@ class AmortizationController extends Controller {
 	 */
 	public function actionIndex() {
 		$dataProvider = new CActiveDataProvider('Amortization');
-		$this -> render('index', 
-		array('dataProvider' => $dataProvider, ));
+		$this -> render('index', array('dataProvider' => $dataProvider, ));
 	}
 
 	/**
@@ -210,11 +209,14 @@ class AmortizationController extends Controller {
 	public function actionAdmin() {
 		$model = new Amortization('search');
 		$model -> unsetAttributes();
+		
+		$dataProvider = new CActiveDataProvider('Amortization');
+
 		// clear any default values
 		if (isset($_GET['Amortization']))
 			$model -> attributes = $_GET['Amortization'];
 
-		$this -> render('admin', array('model' => $model, ));
+		$this -> render('admin', array('model' => $model, 'arProvider' => $dataProvider));
 	}
 
 	/**
@@ -228,14 +230,11 @@ class AmortizationController extends Controller {
 			throw new CHttpException(404, 'The requested page does not exist.');
 		return $model;
 	}
-	
-	
-	public function loadDebtor($id)
-	{
+
+	public function loadDebtor($id) {
 		$debtor = Debtor::model() -> findByPk($id);
-		if ($debtor === null)
-		{
-			throw new CHttpException(404, 'Debtor not found!');			
+		if ($debtor === null) {
+			throw new CHttpException(404, 'Debtor not found!');
 		}
 		return $debtor;
 	}

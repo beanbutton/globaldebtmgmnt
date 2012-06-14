@@ -13,7 +13,7 @@
 		<?php echo CHtml::activeLabel($model,'Fk_debtor_id',array('label'=>'Debtor File#'))?>
 		<br/>		
 		<?php echo $form->dropDownList($model, 'Fk_debtor_id', 
-		CHtml::listData(Debtor::model()->findAll(), 'id', 'file_number'), 
+		CHtml::listData(Debtor::model()->findAll(), 'id', 'file_number' ), 
 			array('empty'=>'Select Debtor')); ?>
 		<?php echo $form -> error($model, 'Fk_debtor_id');?>
 	</div>
@@ -91,7 +91,7 @@
 		<?php echo $form->error($model,'reason_for_hardship'); ?>
 	</div>
 
-        <div class="col">
+        <div class="col" style="font-size:11px;">
 		<?php echo $form->labelEx($model,'total_expenses_to_income_variance'); ?>
 		<?php echo $form->textField($model,'total_expenses_to_income_variance'); ?>
 		<?php echo $form->error($model,'total_expenses_to_income_variance'); ?>
@@ -310,8 +310,8 @@
 	
 -->
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" style="margin-bottom: 40px;">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Update'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

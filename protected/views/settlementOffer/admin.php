@@ -10,17 +10,17 @@ $this->menu=array(
 );
 
 Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('settlement-offer-grid', {
-		data: $(this).serialize()
+	$('.search-button').click(function(){
+		$('.search-form').toggle();
+		return false;
 	});
-	return false;
-});
-");
+	$('.search-form form').submit(function(){
+		$.fn.yiiGridView.update('settlement-offer-grid', {
+			data: $(this).serialize()
+		});
+		return false;
+	});
+	");
 ?>
 
 <h1>Manage Settlement Offers</h1>
@@ -40,6 +40,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'settlement-offer-grid',
 	'dataProvider'=>$model->search(),
+	'htmlOptions'=>array('style' =>'cursor: pointer;'),
+     
+	 'selectionChanged' => "function(id){location.href='"
+	 . Yii::app()->urlManager->createUrl('settlementOffer/updatePopup', array('id'=>'')) 
+     . "' + $.fn.yiiGridView.getSelection(id);}",
+    
+    
+    
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -57,7 +65,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'offer_date',
 		'offer_amount',
 		'offer_amount_percentage',
-		/*
 		'client_saving_amonut',
 		'client_savings_percentage',
 		'client_reserves',
@@ -65,12 +72,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'difference_amount',
 		'offer_status',
 		'valid_date',
-		'comments',
-		'created_at',
-		'updated_at',
-		*/
+		
 		array(
 			'class'=>'CButtonColumn',
 		),
 	),
+	
 )); ?>
+
+<!--TODO: POPUP-->
+<div class="row buttons">
+	<?php echo CHtml::button('Make New Offer', array('submit' => array('settlementOffer/create'))); ?>
+</div>
+

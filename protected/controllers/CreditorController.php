@@ -91,7 +91,6 @@ class CreditorController extends Controller {
 
 		if (isset($_POST['Creditor'])) {
 			$model -> attributes = $_POST['Creditor'];
-			$model -> Fk_debtor_id = $_POST['Fk_debtor_id'];
 			if ($model -> save())
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}

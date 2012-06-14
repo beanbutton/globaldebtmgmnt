@@ -56,7 +56,7 @@ div.form fieldset
 div.form label
 {
 	font-weight: bold;
-	font-size: 0.9em;
+	font-size: 11px;
 	display: block;
 }
 
@@ -64,6 +64,88 @@ div.form .row
 {
 	margin: 5px 0;
 }
+
+div.form .col
+{
+	width: 21%;
+	display: inline;
+	float: left;
+	margin-left: 2%;
+	margin-right: 2%;
+        margin-bottom: 10px;
+}
+
+div.form .telExt{
+    margin-right:10%;
+    margin-left: 0;
+}
+
+div.form .col_add
+{
+	width: 15%;
+	display: inline;
+	float: left;
+	margin-top: 4%;
+        margin-bottom: 7%;
+        margin-left: 5px;
+}
+
+div.form .cc { width: 19%;}
+
+
+div.form .ccadd_col
+{
+	margin: 5px 0; height:50px; width:600px
+}
+
+div.form .cc_add
+{
+	width:23%;
+        display: inline;
+	float: left;
+	margin-right: 28px;
+        
+}
+
+div.form .offer
+{
+	width:43%;
+        display: inline;
+	float: left;
+	margin-right: 5px;
+        margin-bottom: 15px;
+        
+}
+div.form .size-5{width: 5%;}
+div.form .size-10{width: 10%;margin-right: 35px;}
+div.form .size-13{width:13%; margin-right:0px; margin-left: 1%;}
+div.form .size-14{width: 14%;}
+div.form .size-19{width: 19%;}
+div.form .size-21{width: 21%;}
+div.form .size-24{width: 24%;}
+div.form .size-26{width: 26%; margin-top:5px; margin-left:25px;}
+div.form .size-50{width: 50%;}
+div.form .size-100{width: 100%;}
+div.form .spouse{margin-bottom: 7px;}
+div.form .col_field
+{
+	display: inline;
+	float: left;
+	margin-right: 2%;
+}
+
+
+div.col_left{float:left;}
+
+div.col_right{float: right;}
+
+div.form .first_col{margin-bottom:10px;}
+
+div.form .second_col{margin: 5px 0; height:130px;}
+
+div.form .third_col{float: left; width: 600px; margin-right: 45px;}
+
+div.form .four_col{float: left; width: 330px;}
 
 div.form .hint
 {
@@ -157,4 +239,36 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 {
 	clear: left;
 	padding-left: 110px;
+}
+
+
+.row.buttons input[type="submit"]{
+
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.setlOfferRadio input[type="radio"]{width: 125px !important;}
+
+input#SettlementOffer_file_number{width: 25px !important;}
+
+
+
+#settlement-offer-form{font-size: 11px;}
+
+.col_add input#Creditor_name, .col_add input#Creditor_file_number{width:160px;}
+.col_add_cc input#SettlementOffer_offer_date, .col_add_cc input#SettlementOffer_valid_date{width: 100px;}
+.third_col input{width: 150px !important;}
+#Creditor_telephone1_ext, #Creditor_telephone2_ext{width: 48px !important;}
+#Creditor_city, #Creditor_postal_code{width: 100px !important;}
+.four_col input{width: 120px !important;}
+#SettlementOffer_offer_status{width: auto !important;}
+#debtorFormCreate #tabpanel1 #tab1{height: 500px;}
+#debtorFormCreate #tabpanel1 #tab2{height: 300px;}
+
+#debtorFormCreate input[type=submit]{ 
+font-size: 12px;
+position: relative;
+left: 600px;
+top:-95px;
 }

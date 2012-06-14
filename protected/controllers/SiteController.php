@@ -2,6 +2,8 @@
 
 class SiteController extends Controller
 {
+	
+	
 	/**
 	 * Declares class-based actions.
 	 */
@@ -29,7 +31,8 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		//$this->render('index');
+		$this->redirect( Yii::app()->createUrl('debtorOverview/create') );	
 	}
 
 	/**
@@ -90,7 +93,10 @@ class SiteController extends Controller
 				$identity=new UserIdentity( $model->username,$model->password);
 				if($identity->authenticate())
 				{
-					Yii::app()->user->login($identity, 60 *30 );	
+					Yii::app()->user->login($identity, 60 *30 );
+					
+					// Redirect to debtorOverview
+					$this->redirect( Yii::app()->createUrl('debtorOverview/create') );	
 				}
 				$this->redirect(Yii::app()->user->returnUrl);
 			}
@@ -106,6 +112,7 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
+		//$this->redirect(Yii::app()->homeUrl);
+		$this->redirect( Yii::app()->createUrl('site/login') );
 	}
 }

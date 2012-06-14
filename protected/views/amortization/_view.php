@@ -24,15 +24,4 @@
 	<?php echo CHtml::encode($data -> maintenance_fee);?>
 	<br />
 </div>
-<?php
-	$this -> widget('ext.htmlTableUi.htmlTableUi', 
-		array('collapsed' => false, 
-			  'enableSort' => true, 
-			  'sortColumn' => 1, 
-			  'sortOrder' => 'asc', 
-			  'title' => 'Payment Plan Table', 
-			  'extra' => '+Hide', 
-			  'columns' =>  $this->columnHeaders, 
-			  'rows' => $this->getAmortizationPlan($data -> id), 
-			  'footer' => 'Total rows: ' . count( $this->getAmortizationPlan($data -> id))));
-?>
+

@@ -31,7 +31,7 @@ class SettlementOfferController extends Controller {
 		//'actions' => array('index', 'view'), 'users' => array('*'), ),
 		array('allow', // allow authenticated user to perform 'create' and 'update' actions
 		'actions' => array('index', 'view'), 'users' => array('@'), ), array('allow', // allow admin user to perform 'admin' and 'delete' actions
-		'actions' => array('admin', 'index', 'view', 'create', 'update', 'delete', 'generatePdf'), 'users' => array('admin'), ), array('deny', // deny all users
+		'actions' => array('admin', 'index', 'view', 'create', 'update', 'updatePopup','delete', 'generatePdf'), 'users' => array('admin'), ), array('deny', // deny all users
 		'users' => array('*'), ), );
 	}
 
@@ -61,51 +61,78 @@ class SettlementOfferController extends Controller {
 
 	public function generateHtmlTemplate($debtor, $creditor, $financialInfo, $settlementOffer)
 	{
-		$table_header = "<table width='900' border='0' align='center' cellspacing='0'>";
-		$table_footer= "</table>";
-		$content = '';
-                $content .= "<tr>
-                            <td height='43' colspan='2' align='center' bgcolor='#999999' ><h3><strong>Settlement Offers</strong></h3></td>
-                            </tr>
-                            <tr>
-                             <td width='450'>&nbsp;</td>
-                             <td width='450'>&nbsp;</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Client Name:</strong> $debtor->firstname $debtor->lastname</td>
-                            <td><strong>Client ID:</strong> $debtor->file_number</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Creditor Name:</strong> $creditor->name</td>
-                            <td><strong>Account Number:</strong> $financialInfo->account_number</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Offer Date:</strong> $settlementOffer->offer_date</td>
-                            <td><strong>Valid Until:</strong> $settlementOffer->valid_date</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Status:</strong> $settlementOffer->offer_status</td>
-                            <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Settlement Offer (\$):</strong> $settlementOffer->offer_amount</strong></td>
-                            <td><strong>Settlement Offer (%):</strong> $settlementOffer->offer_amount_percentage</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Client Savings (\$):</strong> $settlementOffer->client_saving_amonut</td>
-                            <td><strong>Client Savings (%):</strong> $settlementOffer->client_savings_percentage</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Client Reserves (\$):</strong> $settlementOffer->client_reserves</td>
-                            <td><strong>Service Fee (\$):</strong> $settlementOffer->service_fees</td>
-                            </tr>
-                            <tr>
-                            <td height='55'><strong>Difference (\$):</strong> $settlementOffer->difference_amount</td>
-                            <td>&nbsp;</td>
-                            </tr>";
-                $content = "</table>";
-             
-		return array($table_header,$content,$table_footer);
+		$tbl = <<<EOF
+                    <table width="550">
+                      <thead></thead>
+                      <tfoot></tfoot>
+                      <tbody>
+                        <tr>
+                          <td><strong>Client Name:</strong> $debtor->firstname $debtor->lastname</td>
+                          <td><strong>Client ID:</strong> $debtor->file_number</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td height='55'><strong>Creditor Name:</strong> $creditor->name</td>
+                          <td height='55'><strong>Account Number:</strong> $financialInfo->account_number</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Offer Date:</strong> $settlementOffer->offer_date</td>
+                          <td><strong>Valid Until:</strong> $settlementOffer->valid_date</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Status:</strong> $settlementOffer->offer_status</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Settlement Offer (\$):</strong> $settlementOffer->offer_amount</td>
+                          <td><strong>Settlement Offer (%):</strong> $settlementOffer->offer_amount_percentage</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Client Savings (\$):</strong> $settlementOffer->client_saving_amonut</td>
+                          <td><strong>Client Savings (%):</strong> $settlementOffer->client_savings_percentage</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Client Reserves (\$):</strong> $settlementOffer->client_reserves</td>
+                          <td><strong>Service Fee (\$):</strong> $settlementOffer->service_fees</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Difference (\$):</strong> $settlementOffer->difference_amount</td>
+                          <td></td>
+                        </tr>
+                       </tbody>
+
+                </table>
+              </div>
+         </div>
+EOF;
+	return $tbl;
 	}
 	
 	
@@ -124,85 +151,30 @@ class SettlementOfferController extends Controller {
 		$pdf -> SetKeywords('');
 		$pdf -> SetHeaderData('', '', 'Settlement Offer', '');
 
-		$pdf -> setHeaderFont(Array('helvetica', '', 8));
+		$pdf -> setHeaderFont(Array('helvetica', '', 10));
 		$pdf -> setFooterFont(Array('helvetica', '', 6));
 		$pdf -> SetMargins(15, 18, 15);
 		$pdf -> SetHeaderMargin(5);
 		$pdf -> SetFooterMargin(10);
 		$pdf -> SetAutoPageBreak(TRUE, 0);
-		$pdf -> SetFont('dejavusans', '', 7);
+		$pdf -> SetFont('dejavusans', '', 10);
 		$pdf -> AddPage();
 
 		$model = $this -> loadModel($id);
 		$debtor = NULL;
 		$creditor = NULL;
 		$financialInfo= NULL;
+		$pdfFile= NULL;
 		if ($model != NULL) {
 			$debtor = $this -> loadDebtor($model -> Fk_debtor_id);
 			$creditor = $this->loadCreditor($model -> Fk_debtor_id);
 			$financialInfo= $this->loadDebtorFinancialInfo($model -> Fk_debtor_id);
+			$pdfFile= $debtor->firstname.$debtor->lastname.'-'. $debtor -> file_number.'-'.'SettlementOffer.pdf';
+			$table= $this->generateHtmlTemplate( $debtor, $creditor, $financialInfo, $model);
+			$pdf -> writeHTML($table, true, false, true, false, '');
+			$pdf -> LastPage();
+			$pdf -> Output($pdfFile, "I");
 		}
-
-	
-		$table= $this->generateHtmlTemplate( $debtor, $creditor, $financialInfo, $model);
-		$tbl = <<<EOF
-              <div>
-                <table border="0" >
-                    <thead>
-                    	<tr>
-                            <td height='43' colspan='2' align='center' bgcolor='#999999' ><h3><strong>Settlement Offers</strong></h3></td>
-                        </tr>                            
-                    </thead>
-                    <tbody>
-							<tr>
-	                            <td height='55'><strong>Client Name:</strong> $debtor->firstname $debtor->lastname</td>
-                            </tr>
-                     		<tr>
-                     		    <td><strong>Client ID:</strong> $debtor->file_number</td>
-                     		</tr>
-                     		<tr>
-                     		<td height='55'><strong>Creditor Name:</strong> $creditor->name</td>
-                     		</tr>
-                     		<tr>
-                            	<td><strong>Account Number:</strong> $financialInfo->account_number</td>
-                     		</tr>
-                     		<tr>
-                     		 	<td height='55'><strong>Offer Date:</strong> $model->offer_date</td>
-                     		</tr>
-                     		<tr>
-                            	<td><strong>Valid Until:</strong> $model->valid_date</td>
-                            </tr>
-                            <tr>
-	                            <td height='55'><strong>Status:</strong> $model->offer_status</td>
-                            </tr>
-                            <tr>
-	                            <td><strong>Settlement Amount (\$):</strong> $model->offer_amount</td>					
-                            </tr>
-                            <tr>
-	                            <td><strong>Settlement Offer (%):</strong> $model->offer_amount_percentage</td>
-                            </tr>
-                            <tr>
- 								<td height='55'><strong>Client Savings (\$):</strong> $model->client_saving_amonut</td>                          
-                            </tr>
-                            <tr>
-    	                        <td><strong>Client Savings (%):</strong> $model->client_savings_percentage</td>
-                            </tr>
-                            <tr>
-                             	<td height='55'><strong>Client Reserves (\$):</strong> $settlementOffer->client_reserves</td>                           
-                            </tr>
-                            <tr>
-                                <td><strong>Service Fee (\$):</strong> $settlementOffer->service_fees</td>
-                            </tr>
-							
-                    </tbody>
-                </table>
-              </div>
-         </div>
-EOF;
-		$pdf -> writeHTML($tbl, true, false, true, false, '');
-
-		$pdf -> LastPage();
-		$pdf -> Output("example_002.pdf", "I");
 	}
 
 	/**
@@ -210,7 +182,7 @@ EOF;
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id) {
-		$this -> render('view', array('model' => $this -> loadModel($id), ));
+		$this -> render('view', array('model' => $this -> loadModel($id),'creditor' => $creditor ));
 	}
 
 	/**
@@ -219,23 +191,34 @@ EOF;
 	 */
 	public function actionCreate() {
 		$model = new SettlementOffer;
+		$creditor= new Creditor;
+		
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['SettlementOffer'])) {
 			$model -> attributes = $_POST['SettlementOffer'];
-			$debtor = Debtor::model() -> findByPk($model -> Fk_debtor_id);
+			
+			// Retrieve the Debtor
+			$debtor = $this->loadDebtor($model -> Fk_debtor_id );
+			
 			if ($debtor) {
 				$this -> debtor_name = $debtor -> firstname . " " . $debtor -> lastname;
 				$model -> file_number = $debtor -> file_number;
 			}
 
 			if ($model -> save())
+				
+				//Save the Creditor
+				$creditor->save();
+				
+				
+				// Finally redirect the view
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
 
-		$this -> render('create', array('model' => $model, ));
+		$this -> render('create', array('model' => $model, 'creditor' => $creditor));
 	}
 
 	/**
@@ -245,6 +228,8 @@ EOF;
 	 */
 	public function actionUpdate($id) {
 		$model = $this -> loadModel($id);
+		$debtor = $this->loadDebtor($model -> Fk_debtor_id);
+		$creditor= $this->loadCreditor( $model -> Fk_debtor_id);			
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -252,11 +237,29 @@ EOF;
 		if (isset($_POST['SettlementOffer'])) {
 			$model -> attributes = $_POST['SettlementOffer'];
 			if ($model -> save())
+				
+				$creditor->save();
+			
 				$this -> redirect(array('view', 'id' => $model -> id));
 		}
 
-		$this -> render('update', array('model' => $model, ));
+		$this -> render('update', array('model' => $model,'creditor' => $creditor ));
 	}
+	
+	public function actionUpdatePopup( $id)
+	{
+		$model= $this->loadModel($id);
+		$debtor = $this->loadDebtor($model -> Fk_debtor_id);
+		$creditor= $this->loadCreditor( $model -> Fk_debtor_id);
+		if (isset($_POST['SettlementOffer'])) {
+			$model -> attributes = $_POST['SettlementOffer'];
+			if ($model -> save())
+				$this -> redirect(array('view', 'id' => $model -> id));
+		}
+
+		$this -> render('update_popup', array('model' => $model, 'creditor' => $creditor));	
+	}
+	
 
 	/**
 	 * Deletes a particular model.
@@ -289,11 +292,14 @@ EOF;
 	public function actionAdmin() {
 		$model = new SettlementOffer('search');
 		$model -> unsetAttributes();
+		
+		$creditor= new Creditor();
+		
 		// clear any default values
 		if (isset($_GET['SettlementOffer']))
 			$model -> attributes = $_GET['SettlementOffer'];
 
-		$this -> render('admin', array('model' => $model, ));
+		$this -> render('admin', array('model' => $model, 'creditor' => $creditor));
 	}
 
 	/**

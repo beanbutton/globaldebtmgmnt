@@ -124,8 +124,8 @@ class User extends CActiveRecord {
 	public function getRoles()
 	{
 		return array( '1' => 'admin', 
-					  '2'=> 'user', 
-					  '3'=>'guest');
+					  '2'=> 'employee', 
+					  '3'=>'clients');
 	}
 
 }

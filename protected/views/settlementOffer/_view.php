@@ -28,7 +28,7 @@
 	<?php echo CHtml::encode($data->client_saving_amonut); ?>
 	<br />
 
-	<?php /*
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('client_savings_percentage')); ?>:</b>
 	<?php echo CHtml::encode($data->client_savings_percentage); ?>
 	<br />
@@ -53,18 +53,7 @@
 	<?php echo CHtml::encode($data->valid_date); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('comments')); ?>:</b>
-	<?php echo CHtml::encode($data->comments); ?>
-	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('created_at')); ?>:</b>
-	<?php echo CHtml::encode($data->created_at); ?>
-	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('updated_at')); ?>:</b>
-	<?php echo CHtml::encode($data->updated_at); ?>
-	<br />
-
-	*/ ?>
 
 </div>

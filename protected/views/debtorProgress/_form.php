@@ -9,7 +9,6 @@
 
 	<?php echo $form->errorSummary($model); ?>
 	
-	<?php echo "Debtor: ". $this->debtor_name; ?>
 
 	<div class="row">
 		<?php echo CHtml::activeLabel($model,'Fk_debtor_id',array('label'=>'Debtor File#'))?>
@@ -31,11 +30,11 @@
 		<?php echo $form->labelEx($model,'offer_date'); ?>
 		<?php echo $form->textField($model,'offer_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button1","class"=>"pointer")); ?>
+                array("id"=>"cal_btn_offerdate","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgress_offer_date',
-                    'button'=>'c_button1',
+                    'button'=>'cal_btn_offerdate',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
@@ -47,11 +46,11 @@
 		<?php echo $form->labelEx($model,'offer_valid_until_date'); ?>
 		<?php echo $form->textField($model,'offer_valid_until_date'); ?>
     	        <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button2","class"=>"pointer")); ?>
+                array("id"=>"cal_btn_offervaliddate","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgress_offer_valid_until_date',
-                    'button'=>'c_button2',
+                    'button'=>'cal_btn_offervaliddate',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
@@ -63,11 +62,11 @@
 		<?php echo $form->labelEx($model,'settlement_date'); ?>
 		<?php echo $form->textField($model,'settlement_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button3","class"=>"pointer")); ?>
+                array("id"=>"cal_btn_settlementdate","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgress_settlement_date',
-                    'button'=>'c_button3',
+                    'button'=>'cal_btn_settlementdate',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
@@ -118,8 +117,8 @@
 	</div>
 	
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" style="margin-bottom: 30px;">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Update'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

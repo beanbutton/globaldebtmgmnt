@@ -37,10 +37,25 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
+
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'amortization-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	'htmlOptions'=>array('style' =>'cursor: pointer;'),
+     
+	 'selectionChanged' => "function(id){location.href='"
+	 . Yii::app()->urlManager->createUrl('amortization/updatePopup', array('id'=>'')) 
+     . "' + $.fn.yiiGridView.getSelection(id);}",
+    
+	 // Modify function	
+    //'selectionChanged'=> 
+    //"function(id){window.open('" 
+    //. Yii::app()->urlManager->createUrl('amortization/updatePopup', array('id'=>'')) 
+    //. "' + $.fn.yiiGridView.getSelection(id)"
+    //.", '', 'width=800,height=600')}" ,
+   
+   
+	'filter' => $model,
 	'columns'=>array(
 		'id',
 		array(
@@ -71,3 +86,21 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+
+
+<!--
+<?php
+$this->widget('ext.htmltableui.htmlTableUi',array(
+    'collapsed'=>false,
+    'arProvider'=> $arProvider,
+    'ajaxUrl' => 'amortization/_form',
+    'columns' => array(),
+    'exportUrl'=>'site/exportTable',
+    'extra'=>'Additional Information',
+    'editable'=>true,
+    'enableSort'=>true,
+));
+?>
+-->
+
+

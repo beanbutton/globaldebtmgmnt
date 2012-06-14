@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>htmltableui</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.aptana.ide.core.unifiedBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.aptana.projects.webnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>SiteController.php</name>
+			<type>1</type>
+			<location>/Applications/XAMPP/xamppfiles/htdocs/test/protected/controllers/SiteController.php</location>
+		</link>
+		<link>
+			<name>index.php</name>
+			<type>1</type>
+			<location>/Applications/XAMPP/xamppfiles/htdocs/test/protected/views/site/index.php</location>
+		</link>
+	</linkedResources>
+</projectDescription>

@@ -63,19 +63,20 @@
 		<?php echo $form->error($model,'saf_monthly_payment'); ?>
 	</div>
 
-   <div class="col">
+        
+        <div class="col">
 		<?php echo $form->labelEx($model,'monthly_payment_due_date'); ?>
 		<?php echo $form->textField($model,'monthly_payment_due_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button1","class"=>"pointer")); ?>
+                array("id"=>"btn_monthly_payment_due_date","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgramInfo_monthly_payment_due_date',
-                    'button'=>'c_button1',
+                    'button'=>'btn_monthly_payment_due_date',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
-
+                
 		<?php echo $form->error($model,'monthly_payment_due_date'); ?>
 	</div>
 
@@ -83,11 +84,11 @@
 		<?php echo $form->labelEx($model,'enrollment_date'); ?>
 		<?php echo $form->textField($model,'enrollment_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button2","class"=>"pointer")); ?>
+                array("id"=>"cal_btn_enrollmentdate","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgramInfo_enrollment_date',
-                    'button'=>'c_button2',
+                    'button'=>'cal_btn_enrollmentdate',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
@@ -99,11 +100,11 @@
 		<?php echo $form->labelEx($model,'first_monthly_payment_date'); ?>
 		<?php echo $form->textField($model,'first_monthly_payment_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button3","class"=>"pointer")); ?>
+                array("id"=>"cal_btn_firstpaymentdate","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgramInfo_first_monthly_payment_date',
-                    'button'=>'c_button3',
+                    'button'=>'cal_btn_firstpaymentdate',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
@@ -115,11 +116,11 @@
 		<?php echo $form->labelEx($model,'next_payment_due_date'); ?>
 		<?php echo $form->textField($model,'next_payment_due_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button4","class"=>"pointer")); ?>
+                array("id"=>"cal_btn_nextpaymentdate","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgramInfo_next_payment_due_date',
-                    'button'=>'c_button4',
+                    'button'=>'cal_btn_nextpaymentdate',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
@@ -130,11 +131,11 @@
 		<?php echo $form->labelEx($model,'contract_due_date'); ?>
 		<?php echo $form->textField($model,'contract_due_date'); ?>
                 <?php echo CHtml::image("images/calendar_btn.jpg","calendar",
-                array("id"=>"c_button5","class"=>"pointer")); ?>
+                array("id"=>"cal_btn_contractduedate","class"=>"pointer")); ?>
                 <?php $this->widget('application.extensions.calendar.SCalendar',
                     array(
                     'inputField'=>'DebtorProgramInfo_contract_due_date',
-                    'button'=>'c_button5',
+                    'button'=>'cal_btn_contractduedate',
                     'ifFormat'=>'%Y-%m-%d',
                 ));
                 ?>
@@ -192,7 +193,7 @@
 	</div>
         
  	<div class="col">
-		<?php echo $form->labelEx($model,'maintenance_fee_percentage_automatic'); ?>
+		<span id="maintenance_fee_percentage_automatic"><?php echo $form->labelEx($model,'maintenance_fee_percentage_automatic'); ?></span>
 		<?php echo $form->textField($model,'maintenance_fee_percentage_automatic'); ?>
 		<?php echo $form->error($model,'maintenance_fee_percentage_automatic'); ?>
 	</div>
@@ -203,7 +204,7 @@
 		<?php echo $form->error($model,'service_fee_percentage_automatic'); ?>
 	</div>
    
-        	<div class="col">
+        <div class="col">
 		<?php echo $form->labelEx($model,'admin_fee_manual'); ?>
 		<?php echo $form->textField($model,'admin_fee_manual'); ?>
 		<?php echo $form->error($model,'admin_fee_manual'); ?>
@@ -228,8 +229,8 @@
 		<?php echo $form->error($model,'service_fee_percentage_manual'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" style="margin-bottom: 30px;">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Update'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -13,6 +13,7 @@ body
 	margin-bottom: 5px;
 	background: white;
 	border: 1px solid #C9E0ED;
+	height: auto;
 }
 
 #header
@@ -25,6 +26,7 @@ body
 #content
 {
     padding: 20px;
+    width: 1150px;
 }
 
 #sidebar
@@ -155,7 +157,7 @@ div.search-form
 
 .portlet
 {
-
+width: 300px !important;
 }
 
 .portlet-decoration
@@ -229,4 +231,25 @@ div.search-form
 }
 
 select{
-width:200px;
+width:178px;
+}
+
+#debtor-form{
+    font-size: 12px;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+#debtor-form input{
+    width: 195px;
+}
+
+#debtor-form .row .buttons{
+    width: 195px;
+}
+
+
+.col span#maintenance_fee_percentage_automatic label{font-size: 10px;}
+
+#yw0{width:700px;}
+
+.span-19 #content p{width: 700px;}

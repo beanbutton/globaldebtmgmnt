@@ -33,15 +33,15 @@
 		<?php echo $form->error($model,'invoice_date'); ?>
 	</div>
 
-	<div class="row">
+	<div class="col">
 		<?php echo $form->labelEx($model,'invoice_amount'); ?>
 		<?php echo $form->textField($model,'invoice_amount'); ?>
 		<?php echo $form->error($model,'invoice_amount'); ?>
 	</div>
 
-	<div class="row">
+	<div class="col">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'description',array('size'=>40,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
